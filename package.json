@@ -1,0 +1,24 @@
+{
+  "name": "nestjs-cli-plus",
+  "version": "1.0.0",
+  "description": "扩展@nestjs/cli的功能",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "keywords": [],
+  "homepage": "https://github.com/kuangshp/nestjs-cli-plus",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ali-rds-async": "^0.0.2",
+    "dotenv": "^10.0.0"
+  },
+  "files": [
+    "lib/**/*"
+  ],
+  "devDependencies": {
+    "@types/dotenv": "^8.2.0",
+    "@types/node": "^16.7.6"
+  }
+}

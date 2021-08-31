@@ -1,0 +1,37 @@
+{
+  "name": "co-wrap-all",
+  "version": "1.0.0",
+  "description": "Call co.wrap for multiple generator functions",
+  "keywords": [
+    "co",
+    "coroutine",
+    "async",
+    "wrap",
+    "all",
+    "prototype",
+    "method",
+    "promise",
+    "promisify",
+    "generator"
+  ],
+  "homepage": "https://github.com/connesc/co-wrap-all#readme",
+  "bugs": {
+    "url": "https://github.com/connesc/co-wrap-all/issues"
+  },
+  "license": "MIT",
+  "author": "Cédric Connes <cedric.connes@gmail.com>",
+  "files": [
+    "index.js"
+  ],
+  "repository": "connesc/co-wrap-all",
+  "scripts": {
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "co": "^4.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^3.5.0",
+    "eslint-config-connesc": "^2.0.0"
+  }
+}
