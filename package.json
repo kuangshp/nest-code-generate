@@ -2,16 +2,23 @@
   "name": "nestjs-cli-plus",
   "version": "1.0.0",
   "description": "扩展@nestjs/cli的功能",
-  "main": "lib/index.js",
+  "main": "/lib/index.js",
+  "bin": {
+    "nest-code-generate": "bin/nest-code-generate",
+    "v": "bin/nest-code-generate"
+  },
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "serve": "tsc -w"
   },
   "keywords": [],
   "homepage": "https://github.com/kuangshp/nestjs-cli-plus",
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/commander": "^2.12.2",
     "ali-rds-async": "^0.0.2",
+    "commander": "^8.1.0",
     "dotenv": "^10.0.0"
   },
   "files": [
