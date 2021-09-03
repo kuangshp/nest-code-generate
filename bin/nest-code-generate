@@ -1,0 +1,39 @@
+#!/usr/bin/env node
+/*
+    v account app表示对应数据库的account表, 最后挂载到app模块上, 如果多表就用,分开
+    options: 
+      单独生成实体类
+      生成实体类和空的控制器和服务层
+      生成实体类和带有curd的接口
+
+    prefix? <table_name> module_name [options]
+
+    帮助指令 --help
+    nest-code-generate --help
+
+    table_name 数据表名称, 可以有多个用,分割
+    module_name 跟模块名称, 模块只能选择一个 
+    options: entity(实体)、tier(层), curd(接口)
+
+    <commands>
+    v --help
+    v table_name*n module --entity
+    v table_name*n module --tier
+    v table_name*n module --curd
+  */
+const program = require('commander');
+const { Parse } = require('../lib/index');
+
+program
+  .version(`nest-code-generate ${require('../package.json').version}`)
+  .usage('nest-code-generate <table_name2,table_name2> <module_name> [options]');
+
+program
+  .argument('<table-name>', 'name of the data table')
+  .argument('<module-name>', 'Module name')
+  .option('-e, --entity', 'Generate entity classes separately')
+  .option('-t, --tier', 'Generate entity classes and empty controller and service layers')
+  .option('-i, --curd', 'Generate entity classes and interfaces with CURD')
+  .action((tableName, moduleName, options) => new Parse(tableName, moduleName, options));
+
+program.parse(process.argv);

@@ -3,8 +3,8 @@ const config = {
   host: "localhost",
   port: 3306,
   user: "root",
-  password: "123456",
-  database: "yst_shop",
+  password: "password",
+  database: "nest-code-generate",
 };
 // 创建连接
 export const db = new AsyncAliRds(config);
