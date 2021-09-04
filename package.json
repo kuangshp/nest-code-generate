@@ -1,7 +1,7 @@
 {
   "name": "nest-code-generate",
   "version": "1.0.0",
-  "description": "扩展@nestjs/cli的功能",
+  "description": "扩展@nestjs/cli的功能,直接输入表名生成对应的实体类、控制器、服务层",
   "main": "/lib/index.js",
   "bin": {
     "nest-code-generate": "bin/nest-code-generate",
@@ -11,13 +11,19 @@
     "build": "tsc",
     "serve": "tsc -w"
   },
-  "keywords": [],
+  "keywords": [
+    "nest",
+    "mysql",
+    "code",
+    "generate",
+    "code-generate",
+    "node",
+    "nestjs/cli"
+  ],
   "homepage": "https://github.com/kuangshp/nest-code-generate",
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@types/commander": "^2.12.2",
-    "@types/yaml": "^1.9.7",
     "ali-rds-async": "^0.0.2",
     "commander": "^8.1.0",
     "dotenv": "^10.0.0",
@@ -29,6 +35,8 @@
     "lib/**/*"
   ],
   "devDependencies": {
+    "@types/commander": "^2.12.2",
+    "@types/yaml": "^1.9.7",
     "@types/dotenv": "^8.2.0",
     "@types/ejs": "^3.1.0",
     "@types/fs-extra": "^9.0.12",
