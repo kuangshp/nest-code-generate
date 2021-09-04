@@ -1,0 +1,35 @@
+<% if (is_full) { %>
+import { Controller, Delete, Get, Post, Put, Body, Param, ParseIntPipe } from '@nestjs/common';
+import { DeleteResult, UpdateResult } from 'typeorm';
+import { <%= table.table_uppercase_name %>Entity } from '../../entities/<%= module_name %>/<%= table.table_name %>.entity';
+import { <%= table.table_uppercase_name %>Service } from '../../services/<%= module_name %>/<%= table.table_name %>.service';
+<% } else { %>
+import { Controller } from '@nestjs/common';
+<% } %>
+
+@Controller('<%= table.table_name %>')
+export class <%= table.table_uppercase_name %>Controller {
+  <% if (is_full) { %>
+  constructor(private readonly <%= table.table_name %>Service: <%= table.table_uppercase_name %>Service) {}
+  @Get()
+  async find(): Promise<<%= table.table_uppercase_name %>Entity[]> {
+    return await this.<%= table.table_name %>Service.find()
+  }
+
+  @Post()
+  async create(@Body() data: <%= table.table_uppercase_name %>Entity): Promise<<%= table.table_uppercase_name %>Entity> {
+    return await this.<%= table.table_name %>Service.create(data)
+  }
+
+  @Delete(':id')
+  async remove(@Param('id', new ParseIntPipe()) id: number): Promise<DeleteResult> {
+    return await this.<%= table.table_name %>Service.remove(id)
+  }
+
+  @Put(':id')
+  async update(@Param('id', new ParseIntPipe()) id: number, @Body() data: <%= table.table_uppercase_name %>Entity): Promise<UpdateResult> {
+    return await this.<%= table.table_name %>Service.update(id, data)
+  }
+
+  <% } %>
+}

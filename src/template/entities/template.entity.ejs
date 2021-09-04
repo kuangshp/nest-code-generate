@@ -1,0 +1,16 @@
+import { Column, Entity } from 'typeorm';
+
+@Entity('<%= table.table_uppercase_name %>')
+export class <%= table.table_uppercase_name %>Entity {
+  <% table.table_info.forEach(function(item){ %>
+  @Column({
+    type: '<%= item.Type %>',
+    name: '<%= item.Field %>',
+    length: '<%= item.Type %>',
+    unique: true,
+    nullable: false,
+    comment: '<%= item.Comment %>'
+  })
+  <%= item.Field %>: <%= item.Type %>;
+  <% }); %>
+}

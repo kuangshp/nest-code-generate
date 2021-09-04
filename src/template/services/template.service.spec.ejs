@@ -1,0 +1,18 @@
+import { Test, TestingModule } from '@nestjs/testing';
+import { <%= table.table_uppercase_name %>Service } from './<%= table.table_name %>.service';
+
+describe('<%= table.table_uppercase_name %>Service', () => {
+  let service: <%= table.table_uppercase_name %>Service;
+
+  beforeEach(async () => {
+    const module: TestingModule = await Test.createTestingModule({
+      providers: [<%= table.table_uppercase_name %>Service],
+    }).compile();
+
+    service = module.get<<%= table.table_uppercase_name %>Service>(<%= table.table_uppercase_name %>Service);
+  });
+
+  it('should be defined', () => {
+    expect(service).toBeDefined();
+  });
+});

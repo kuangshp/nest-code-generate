@@ -173,3 +173,10 @@ export interface YMLDatabaseConfig {
   Password     : string;
   Database     : string;
 }
+export enum GENFILE_TYPES {
+  ENTITY = 'entities',
+  CONTROLLER = 'controllers',
+  SERVICE = 'services',
+  FULL = 'full',
+  EMPTY = 'empty'
+}
