@@ -183,7 +183,7 @@ export const generateEntity = (columnStructure: ColumnMap) => {
 
     let entityStr = `import { Entity, Column${ importDependences() } } from 'typeorm';\n@Entity('${tableName}')\nexport class ${textCapitalize(tableName)}Entity {\n${scheme}\n}`;
 
-    const filepath = join(__dirname, '..', `../${tableName}.entity.ts`);
+    const filepath = join(__dirname, '..', '..', `${tableName}.entity.ts`);
     
     writeFileSync(filepath, entityStr);
   });
