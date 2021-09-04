@@ -1,5 +1,5 @@
 {
-  "name": "nestjs-cli-plus",
+  "name": "nest-code-generate",
   "version": "1.0.0",
   "description": "扩展@nestjs/cli的功能",
   "main": "/lib/index.js",
@@ -12,7 +12,7 @@
     "serve": "tsc -w"
   },
   "keywords": [],
-  "homepage": "https://github.com/kuangshp/nestjs-cli-plus",
+  "homepage": "https://github.com/kuangshp/nest-code-generate",
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -21,12 +21,9 @@
     "ali-rds-async": "^0.0.2",
     "commander": "^8.1.0",
     "dotenv": "^10.0.0",
-<<<<<<< HEAD
-    "yaml": "^1.10.2"
-=======
+    "yaml": "^1.10.2",
     "ejs": "^3.1.6",
     "fs-extra": "^10.0.0"
->>>>>>> 9224db316e55417a0425d7863c0bc46f051bdc1f
   },
   "files": [
     "lib/**/*"
