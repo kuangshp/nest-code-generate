@@ -98,7 +98,7 @@ export const generateColumn = ({
 // 获取表结构
 export const getTableStructure = async (tableNames: string[]): Promise<RowMap> => {
   // @ts-ignore
-  const structure: RowMap = await tableNames.reduce(async (map: Promise<RowMap>, name: string) => {
+  const structure: RowMap = tableNames.reduce(async (map: Promise<RowMap>, name: string) => {
     const newMap = (await map);
     newMap[name] = await db.query(`SHOW FULL FIELDS FROM ${name}`);
     return map;

@@ -1,5 +1,6 @@
 {
   "cSpell.words": [
+    "Dependences",
     "JSTYPEMAP",
     "Minxin",
     "datetime",
@@ -14,6 +15,7 @@
     "multipoint",
     "multipolygon",
     "nvarchar",
+    "ormconfig",
     "smallint",
     "tinyblob",
     "tinytext"
