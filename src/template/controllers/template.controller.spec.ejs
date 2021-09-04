@@ -1,0 +1,18 @@
+import { Test, TestingModule } from '@nestjs/testing';
+import { <%= table.table_uppercase_name %>Controller } from './<%= table.table_name %>.controller';
+
+describe('<%= table.table_uppercase_name %>Controller', () => {
+  let controller: <%= table.table_uppercase_name %>Controller;
+
+  beforeEach(async () => {
+    const module: TestingModule = await Test.createTestingModule({
+      controllers: [<%= table.table_uppercase_name %>Controller],
+    }).compile();
+
+    controller = module.get<<%= table.table_uppercase_name %>Controller>(<%= table.table_uppercase_name %>Controller);
+  });
+
+  it('should be defined', () => {
+    expect(controller).toBeDefined();
+  });
+});
