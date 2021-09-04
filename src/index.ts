@@ -1,6 +1,6 @@
 import "dotenv/config";
 import { Options, OptionsKey } from './types/types';
-import { getTableStructure, transformStructure, generateEntity } from "./utils";
+import { getTableStructure, transformStructure, generateEntity } from "./utils/parser";
 
 export class Parse {
   tableName: string = '';

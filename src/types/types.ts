@@ -150,6 +150,29 @@ export type ColumnMap = { [k in string]: Column[] };
 
 export type MinxinProp = { jsType: any, primaryGeneratedColumn: boolean, isIndex: boolean };
 
+export interface DatabaseConfig {
+  host        : string;
+  port        : number;
+  user        : string;
+  password    : string;
+  database    : string;
+}
+
+export interface EnvDatabaseConfig {
+  DB_HOST      : string;
+  DB_PORT      : number;
+  DB_USERNAME  : string;
+  DB_PASSWORD  : string;
+  DB_DATABASE  : string;
+}
+
+export interface YMLDatabaseConfig {
+  Host         : string;
+  Port         : number;
+  User         : string;
+  Password     : string;
+  Database     : string;
+}
 export enum GENFILE_TYPES {
   ENTITY = 'entities',
   CONTROLLER = 'controllers',
