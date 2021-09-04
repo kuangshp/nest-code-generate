@@ -1,5 +1,5 @@
 import AsyncAliRds from "ali-rds-async";
-import { findNodeModules } from "../utils/database";
+import { findNodeModules, transformOptions } from "../utils/database";
 import { resolve } from 'path';
 import { readFileSync } from 'fs';
 import { EnvDatabaseConfig, DatabaseConfig, YMLDatabaseConfig } from '../types/types';
@@ -12,46 +12,27 @@ const env = process.env.NODE_ENV || 'development';
 export const readDatabaseConfig = () => {
   // 找到node_modules所在的路径
   const { dir, path } = findNodeModules();
-  const config = {
-    host: "localhost",
-    port: 3306,
-    user: "root",
-    password: "root",
-    database: "test",
-  };
+  let config: DatabaseConfig;
   if (dir.includes('ormconfig.json')) {
     try {
-      const jsonConfig = readFileSync(resolve(path, 'ormconfig.json'), 'utf-8');
-      const { host, port, user, password, database } = JSON.parse(jsonConfig) as DatabaseConfig;
-      config.host = host;
-      config.port = port;
-      config.user = user;
-      config.password = password;
-      config.database = database;
+      const strConfig = readFileSync(resolve(path, 'ormconfig.json'), 'utf-8');
+      const jsonConfig = JSON.parse(strConfig) as DatabaseConfig;
+      config = transformOptions(jsonConfig);
     } catch (error) {
       throw error;
     }
   } else if (dir.includes('ormconfig.yml')) {
       try {
         const file = readFileSync(resolve(path, 'ormconfig.yml'), 'utf8');
-        const { Host, Port, User, Password, Database } = YAML.parse(file).database as YMLDatabaseConfig;
-        config.host = Host;
-        config.port = Port;
-        config.user = User;
-        config.password = Password;
-        config.database = Database;
+        const ymlConfig = YAML.parse(file).database as YMLDatabaseConfig;
+        config = transformOptions(ymlConfig);
       } catch (error) {
         throw error;
       }
   } else if (dir.includes(`.env.${env}`)) {
     try {
-      const envConfig = dotenv.config({ path: `.env.${env}` });
-      const { DB_HOST, DB_PORT, DB_USERNAME, DB_PASSWORD, DB_DATABASE } = envConfig.parsed as any as EnvDatabaseConfig;
-      config.host = DB_HOST;
-      config.port = DB_PORT;
-      config.user = DB_USERNAME;
-      config.password = DB_PASSWORD;
-      config.database = DB_DATABASE;
+      const envConfig = dotenv.config({ path: `.env.${env}` }).parsed as any as EnvDatabaseConfig;
+      config = transformOptions(envConfig);
     } catch (error) {
       throw error;
     }

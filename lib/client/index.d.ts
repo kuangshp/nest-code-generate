@@ -1,9 +1,4 @@
 import AsyncAliRds from "ali-rds-async";
-export declare const readDatabaseConfig: () => {
-    host: string;
-    port: number;
-    user: string;
-    password: string;
-    database: string;
-};
+import { DatabaseConfig } from '../types/types';
+export declare const readDatabaseConfig: () => DatabaseConfig;
 export declare const db: AsyncAliRds;
