@@ -1,0 +1,7 @@
+{
+  "host": "172.16.183.175",
+  "port": 3306,
+  "user": "root",
+  "password": "password",
+  "database": "nest-code-generate"
+}

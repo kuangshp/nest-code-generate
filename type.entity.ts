@@ -1,764 +1,250 @@
-import { Entity, Unique, Column } from "typeorm";
-
-@Entity("type")
+import { Entity, Column, Index, PrimaryGeneratedColumn } from 'typeorm';
+@Entity('type')
 export class TypeEntity {
-  @Column({
-    type: "int",
-    length: undefined,
-    precision: undefined,
-    scale: undefined,
-    enum: undefined,
-    name: "id",
-    collation: null,
-    nullable: "false",
-    default: null,
-    select: "false",
-    comment: "",
-    update: "true",
-    primary: "true",
-    unique: "true",
-    jsType: undefined,
-  })
-  id: undefined;
+  @PrimaryGeneratedColumn()
+  id: number;
 
   @Column({
-    type: "decimal",
-    length: undefined,
-    precision: undefined,
-    scale: undefined,
-    enum: undefined,
-    name: "t_dec",
-    collation: null,
-    nullable: "false",
-    default: null,
-    select: "false",
-    comment: "",
-    update: "true",
-    primary: "false",
-    unique: "false",
-    jsType: undefined,
+    type: "decimal", 
+    precision: 20, 
+    scale: 8, 
+    name: "t_dec" 
   })
-  t_dec: undefined;
+  tDec: number;
 
   @Column({
-    type: "decimal",
-    length: undefined,
-    precision: undefined,
-    scale: undefined,
-    enum: undefined,
-    name: "t_decimal",
-    collation: null,
-    nullable: "false",
-    default: null,
-    select: "false",
-    comment: "",
-    update: "true",
-    primary: "false",
-    unique: "false",
-    jsType: undefined,
+    type: "decimal", 
+    precision: 20, 
+    scale: 8, 
+    name: "t_decimal" 
   })
-  t_decimal: undefined;
+  tDecimal: number;
 
   @Column({
-    type: "decimal",
-    length: undefined,
-    precision: undefined,
-    scale: undefined,
-    enum: undefined,
-    name: "t_numeric",
-    collation: null,
-    nullable: "false",
-    default: null,
-    select: "false",
-    comment: "",
-    update: "true",
-    primary: "false",
-    unique: "false",
-    jsType: undefined,
+    type: "decimal", 
+    precision: 10, 
+    scale: 9, 
+    name: "t_numeric" 
   })
-  t_numeric: undefined;
+  tNumeric: number;
 
   @Column({
-    type: "date",
-    length: undefined,
-    precision: undefined,
-    scale: undefined,
-    enum: undefined,
-    name: "t_date",
-    collation: null,
-    nullable: "false",
-    default: null,
-    select: "false",
-    comment: "",
-    update: "true",
-    primary: "false",
-    unique: "false",
-    jsType: undefined,
+    type: "date", 
+    name: "t_date" 
   })
-  t_date: undefined;
+  tDate: string;
 
   @Column({
-    type: "datetime",
-    length: undefined,
-    precision: undefined,
-    scale: undefined,
-    enum: undefined,
-    name: "t_datetime",
-    collation: null,
-    nullable: "false",
-    default: null,
-    select: "false",
-    comment: "",
-    update: "true",
-    primary: "false",
-    unique: "false",
-    jsType: undefined,
+    type: "datetime", 
+    name: "t_datetime" 
   })
-  t_datetime: undefined;
+  tDatetime: Date;
 
   @Column({
-    type: "timestamp",
-    length: undefined,
-    precision: undefined,
-    scale: undefined,
-    enum: undefined,
-    name: "t_timestamp",
-    collation: null,
-    nullable: "false",
-    default: null,
-    select: "false",
-    comment: "",
-    update: "true",
-    primary: "false",
-    unique: "false",
-    jsType: undefined,
+    type: "timestamp", 
+    name: "t_timestamp" 
   })
-  t_timestamp: undefined;
+  tTimestamp: Date;
 
   @Column({
-    type: "time",
-    length: undefined,
-    precision: undefined,
-    scale: undefined,
-    enum: undefined,
-    name: "t_time",
-    collation: null,
-    nullable: "false",
-    default: null,
-    select: "false",
-    comment: "",
-    update: "true",
-    primary: "false",
-    unique: "false",
-    jsType: undefined,
+    type: "time", 
+    name: "t_time" 
   })
-  t_time: undefined;
+  tTime: string;
 
   @Column({
-    type: "year",
-    length: undefined,
-    precision: undefined,
-    scale: undefined,
-    enum: undefined,
-    name: "t_year",
-    collation: null,
-    nullable: "false",
-    default: null,
-    select: "false",
-    comment: "",
-    update: "true",
-    primary: "false",
-    unique: "false",
-    jsType: undefined,
+    type: "year", 
+    name: "t_year" 
   })
-  t_year: undefined;
+  tYear: string;
 
   @Column({
-    type: "text",
-    length: undefined,
-    precision: undefined,
-    scale: undefined,
-    enum: undefined,
-    name: "t_text",
-    collation: "utf8mb4_bin",
-    nullable: "false",
-    default: null,
-    select: "false",
-    comment: "",
-    update: "true",
-    primary: "false",
-    unique: "false",
-    jsType: undefined,
+    type: "text", 
+    name: "t_text" 
   })
-  t_text: undefined;
+  tText: string;
 
   @Column({
-    type: "tinytext",
-    length: undefined,
-    precision: undefined,
-    scale: undefined,
-    enum: undefined,
-    name: "t_tinytext",
-    collation: "utf8mb4_bin",
-    nullable: "false",
-    default: null,
-    select: "false",
-    comment: "",
-    update: "true",
-    primary: "false",
-    unique: "false",
-    jsType: undefined,
+    type: "tinytext", 
+    name: "t_tinytext" 
   })
-  t_tinytext: undefined;
+  tTinytext: string;
 
   @Column({
-    type: "mediumtext",
-    length: undefined,
-    precision: undefined,
-    scale: undefined,
-    enum: undefined,
-    name: "t_mediumtext",
-    collation: "utf8mb4_bin",
-    nullable: "false",
-    default: null,
-    select: "false",
-    comment: "",
-    update: "true",
-    primary: "false",
-    unique: "false",
-    jsType: undefined,
+    type: "mediumtext", 
+    name: "t_mediumtext" 
   })
-  t_mediumtext: undefined;
+  tMediumtext: string;
 
   @Column({
-    type: "blob",
-    length: undefined,
-    precision: undefined,
-    scale: undefined,
-    enum: undefined,
-    name: "t_blob",
-    collation: null,
-    nullable: "false",
-    default: null,
-    select: "false",
-    comment: "",
-    update: "true",
-    primary: "false",
-    unique: "false",
-    jsType: undefined,
+    type: "blob", 
+    name: "t_blob" 
   })
-  t_blob: undefined;
+  tBlob: string;
 
   @Column({
-    type: "longtext",
-    length: undefined,
-    precision: undefined,
-    scale: undefined,
-    enum: undefined,
-    name: "t_longtext",
-    collation: "utf8mb4_bin",
-    nullable: "false",
-    default: null,
-    select: "false",
-    comment: "",
-    update: "true",
-    primary: "false",
-    unique: "false",
-    jsType: undefined,
+    type: "longtext", 
+    name: "t_longtext" 
   })
-  t_longtext: undefined;
+  tLongtext: string;
 
   @Column({
-    type: "tinyblob",
-    length: undefined,
-    precision: undefined,
-    scale: undefined,
-    enum: undefined,
-    name: "t_tinyblob",
-    collation: null,
-    nullable: "false",
-    default: null,
-    select: "false",
-    comment: "",
-    update: "true",
-    primary: "false",
-    unique: "false",
-    jsType: undefined,
+    type: "tinyblob", 
+    name: "t_tinyblob" 
   })
-  t_tinyblob: undefined;
+  tTinyblob: string;
 
   @Column({
-    type: "mediumblob",
-    length: undefined,
-    precision: undefined,
-    scale: undefined,
-    enum: undefined,
-    name: "t_mediumblob",
-    collation: null,
-    nullable: "false",
-    default: null,
-    select: "false",
-    comment: "",
-    update: "true",
-    primary: "false",
-    unique: "false",
-    jsType: undefined,
+    type: "mediumblob", 
+    name: "t_mediumblob" 
   })
-  t_mediumblob: undefined;
+  tMediumblob: string;
 
   @Column({
-    type: "json",
-    length: undefined,
-    precision: undefined,
-    scale: undefined,
-    enum: undefined,
-    name: "t_json",
-    collation: null,
-    nullable: "false",
-    default: null,
-    select: "false",
-    comment: "",
-    update: "true",
-    primary: "false",
-    unique: "false",
-    jsType: undefined,
+    type: "json", 
+    name: "t_json" 
   })
-  t_json: undefined;
+  tJson: string;
 
   @Column({
-    type: "geometry",
-    length: undefined,
-    precision: undefined,
-    scale: undefined,
-    enum: undefined,
-    name: "t_geometry",
-    collation: null,
-    nullable: "false",
-    default: null,
-    select: "false",
-    comment: "",
-    update: "true",
-    primary: "false",
-    unique: "false",
-    jsType: undefined,
+    type: "geometry", 
+    name: "t_geometry" 
   })
-  t_geometry: undefined;
+  tGeometry: string;
 
   @Column({
-    type: "point",
-    length: undefined,
-    precision: undefined,
-    scale: undefined,
-    enum: undefined,
-    name: "t_point",
-    collation: null,
-    nullable: "false",
-    default: null,
-    select: "false",
-    comment: "",
-    update: "true",
-    primary: "false",
-    unique: "false",
-    jsType: undefined,
+    type: "point", 
+    name: "t_point" 
   })
-  t_point: undefined;
+  tPoint: string;
 
   @Column({
-    type: "linestring",
-    length: undefined,
-    precision: undefined,
-    scale: undefined,
-    enum: undefined,
-    name: "t_linestring",
-    collation: null,
-    nullable: "false",
-    default: null,
-    select: "false",
-    comment: "",
-    update: "true",
-    primary: "false",
-    unique: "false",
-    jsType: undefined,
+    type: "linestring", 
+    name: "t_linestring" 
   })
-  t_linestring: undefined;
+  tLinestring: string;
 
   @Column({
-    type: "polygon",
-    length: undefined,
-    precision: undefined,
-    scale: undefined,
-    enum: undefined,
-    name: "t_polygon",
-    collation: null,
-    nullable: "false",
-    default: null,
-    select: "false",
-    comment: "",
-    update: "true",
-    primary: "false",
-    unique: "false",
-    jsType: undefined,
+    type: "polygon", 
+    name: "t_polygon" 
   })
-  t_polygon: undefined;
+  tPolygon: string;
 
   @Column({
-    type: "multipoint",
-    length: undefined,
-    precision: undefined,
-    scale: undefined,
-    enum: undefined,
-    name: "t_multipoint",
-    collation: null,
-    nullable: "false",
-    default: null,
-    select: "false",
-    comment: "",
-    update: "true",
-    primary: "false",
-    unique: "false",
-    jsType: undefined,
+    type: "multipoint", 
+    name: "t_multipoint" 
   })
-  t_multipoint: undefined;
+  tMultipoint: string;
 
   @Column({
-    type: "multilinestring",
-    length: undefined,
-    precision: undefined,
-    scale: undefined,
-    enum: undefined,
-    name: "t_multilinestring",
-    collation: null,
-    nullable: "false",
-    default: null,
-    select: "false",
-    comment: "",
-    update: "true",
-    primary: "false",
-    unique: "false",
-    jsType: undefined,
+    type: "multilinestring", 
+    name: "t_multilinestring" 
   })
-  t_multilinestring: undefined;
+  tMultilinestring: string;
 
   @Column({
-    type: "multipolygon",
-    length: undefined,
-    precision: undefined,
-    scale: undefined,
-    enum: undefined,
-    name: "t_multipolygon",
-    collation: null,
-    nullable: "false",
-    default: null,
-    select: "false",
-    comment: "",
-    update: "true",
-    primary: "false",
-    unique: "false",
-    jsType: undefined,
+    type: "multipolygon", 
+    name: "t_multipolygon" 
   })
-  t_multipolygon: undefined;
+  tMultipolygon: string;
+
+  @Index()
+  @Column({
+    type: "int", 
+    name: "t_int" 
+  })
+  tInt: number;
 
   @Column({
-    type: "int",
-    length: undefined,
-    precision: undefined,
-    scale: undefined,
-    enum: undefined,
-    name: "t_int",
-    collation: null,
-    nullable: "false",
-    default: null,
-    select: "false",
-    comment: "",
-    update: "true",
-    primary: "false",
-    unique: "false",
-    jsType: undefined,
+    type: "tinyint", 
+    name: "t_tinyint" 
   })
-  t_int: undefined;
+  tTinyint: number;
 
   @Column({
-    type: "tinyint",
-    length: undefined,
-    precision: undefined,
-    scale: undefined,
-    enum: undefined,
-    name: "t_tinyint",
-    collation: null,
-    nullable: "false",
-    default: null,
-    select: "false",
-    comment: "",
-    update: "true",
-    primary: "false",
-    unique: "false",
-    jsType: undefined,
+    type: "smallint", 
+    name: "t_smallint" 
   })
-  t_tinyint: undefined;
+  tSmallint: number;
 
   @Column({
-    type: "smallint",
-    length: undefined,
-    precision: undefined,
-    scale: undefined,
-    enum: undefined,
-    name: "t_smallint",
-    collation: null,
-    nullable: "false",
-    default: null,
-    select: "false",
-    comment: "",
-    update: "true",
-    primary: "false",
-    unique: "false",
-    jsType: undefined,
+    type: "mediumint", 
+    name: "t_mediumint" 
   })
-  t_smallint: undefined;
+  tMediumint: number;
 
   @Column({
-    type: "mediumint",
-    length: undefined,
-    precision: undefined,
-    scale: undefined,
-    enum: undefined,
-    name: "t_mediumint",
-    collation: null,
-    nullable: "false",
-    default: null,
-    select: "false",
-    comment: "",
-    update: "true",
-    primary: "false",
-    unique: "false",
-    jsType: undefined,
+    type: "bigint", 
+    name: "t_bigint" 
   })
-  t_mediumint: undefined;
+  tBigint: number;
 
   @Column({
-    type: "bigint",
-    length: undefined,
-    precision: undefined,
-    scale: undefined,
-    enum: undefined,
-    name: "t_bigint",
-    collation: null,
-    nullable: "false",
-    default: null,
-    select: "false",
-    comment: "",
-    update: "true",
-    primary: "false",
-    unique: "false",
-    jsType: undefined,
+    type: "float", 
+    scale: 1, 
+    name: "t_float" 
   })
-  t_bigint: undefined;
+  tFloat: number;
 
   @Column({
-    type: "float",
-    length: undefined,
-    precision: undefined,
-    scale: undefined,
-    enum: undefined,
-    name: "t_float",
-    collation: null,
-    nullable: "false",
-    default: null,
-    select: "false",
-    comment: "",
-    update: "true",
-    primary: "false",
-    unique: "false",
-    jsType: undefined,
+    type: "double", 
+    scale: 2, 
+    name: "t_double" 
   })
-  t_float: undefined;
+  tDouble: number;
 
   @Column({
-    type: "double",
-    length: undefined,
-    precision: undefined,
-    scale: undefined,
-    enum: undefined,
-    name: "t_double",
-    collation: null,
-    nullable: "false",
-    default: null,
-    select: "false",
-    comment: "",
-    update: "true",
-    primary: "false",
-    unique: "false",
-    jsType: undefined,
+    type: "text", 
+    name: "t_simple_json" 
   })
-  t_double: undefined;
+  tSimpleJson: string;
 
   @Column({
-    type: "text",
-    length: undefined,
-    precision: undefined,
-    scale: undefined,
-    enum: undefined,
-    name: "t_simple_json",
-    collation: "utf8mb4_bin",
-    nullable: "false",
-    default: null,
-    select: "false",
-    comment: "",
-    update: "true",
-    primary: "false",
-    unique: "false",
-    jsType: undefined,
+    type: "text", 
+    name: "t_array" 
   })
-  t_simple_json: undefined;
+  tArray: string;
 
   @Column({
-    type: "text",
-    length: undefined,
-    precision: undefined,
-    scale: undefined,
-    enum: undefined,
-    name: "t_array",
-    collation: "utf8mb4_bin",
-    nullable: "false",
-    default: null,
-    select: "false",
-    comment: "",
-    update: "true",
-    primary: "false",
-    unique: "false",
-    jsType: undefined,
+    type: "enum", 
+    enum: ["test_enum1","test_enum2"], 
+    name: "t_enum" 
   })
-  t_array: undefined;
+  tEnum: ["test_enum1","test_enum2"];
 
   @Column({
-    type: "enum",
-    length: undefined,
-    precision: undefined,
-    scale: undefined,
-    enum: "test_enum1,test_enum2",
-    name: "t_enum",
-    collation: "utf8mb4_bin",
-    nullable: "false",
-    default: null,
-    select: "false",
-    comment: "",
-    update: "true",
-    primary: "false",
-    unique: "false",
-    jsType: "[]",
+    type: "char", 
+    length: 10, 
+    name: "t_char" 
   })
-  t_enum: [];
+  tChar: string;
 
   @Column({
-    type: "char",
-    length: undefined,
-    precision: undefined,
-    scale: undefined,
-    enum: undefined,
-    name: "t_char",
-    collation: "utf8mb4_bin",
-    nullable: "false",
-    default: null,
-    select: "false",
-    comment: "",
-    update: "true",
-    primary: "false",
-    unique: "false",
-    jsType: undefined,
+    type: "varchar", 
+    length: 10, 
+    name: "t_varchar" 
   })
-  t_char: undefined;
+  tVarchar: string;
 
   @Column({
-    type: "varchar",
-    length: undefined,
-    precision: undefined,
-    scale: undefined,
-    enum: undefined,
-    name: "t_varchar",
-    collation: "utf8mb4_bin",
-    nullable: "false",
-    default: null,
-    select: "false",
-    comment: "",
-    update: "true",
-    primary: "false",
-    unique: "false",
-    jsType: undefined,
+    type: "varchar", 
+    length: 10, 
+    name: "t_nvarchar" 
   })
-  t_varchar: undefined;
+  tNvarchar: string;
 
   @Column({
-    type: "varchar",
-    length: undefined,
-    precision: undefined,
-    scale: undefined,
-    enum: undefined,
-    name: "t_nvarchar",
-    collation: "utf8mb4_bin",
-    nullable: "false",
-    default: null,
-    select: "false",
-    comment: "",
-    update: "true",
-    primary: "false",
-    unique: "false",
-    jsType: undefined,
+    type: "longblob", 
+    name: "t_longblob" 
   })
-  t_nvarchar: undefined;
+  tLongblob: string;
 
   @Column({
-    type: "longblob",
-    length: undefined,
-    precision: undefined,
-    scale: undefined,
-    enum: undefined,
-    name: "t_longblob",
-    collation: null,
-    nullable: "false",
-    default: null,
-    select: "false",
-    comment: "",
-    update: "true",
-    primary: "false",
-    unique: "false",
-    jsType: undefined,
+    type: "binary", 
+    length: 10, 
+    name: "t_binary" 
   })
-  t_longblob: undefined;
+  tBinary: string;
 
-  @Column({
-    type: "binary",
-    length: undefined,
-    precision: undefined,
-    scale: undefined,
-    enum: undefined,
-    name: "t_binary",
-    collation: null,
-    nullable: "false",
-    default: null,
-    select: "false",
-    comment: "",
-    update: "true",
-    primary: "false",
-    unique: "false",
-    jsType: undefined,
-  })
-  t_binary: undefined;
 
-  @Column({
-    type: "geomcollection",
-    length: undefined,
-    precision: undefined,
-    scale: undefined,
-    enum: undefined,
-    name: "t_geometrycollection",
-    collation: null,
-    nullable: "false",
-    default: null,
-    select: "false",
-    comment: "",
-    update: "true",
-    primary: "false",
-    unique: "false",
-    jsType: undefined,
-  })
-  t_geometrycollection: undefined;
 }

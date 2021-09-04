@@ -9,7 +9,7 @@ export declare type OptionsKey = {
 export interface RowDataPacket {
     Field: string;
     Type: string;
-    Collation: string | null;
+    Collation: string | null | undefined;
     Null: 'YES' | 'NO';
     Key: string;
     Default: string | number | null;
@@ -59,7 +59,6 @@ export interface Column {
     length: number;
     nullable: boolean;
     update: boolean;
-    select: boolean;
     default: string | number;
     primary: boolean;
     unique: boolean;
@@ -79,3 +78,35 @@ export declare const JSTYPEMAP: {
 export declare const RULES: {
     [t in ColumnType]: RegExp;
 };
+export declare type RowMap = {
+    [k in string]: RowDataPacket[];
+};
+export declare type ColumnMap = {
+    [k in string]: Column[];
+};
+export declare type MinxinProp = {
+    jsType: any;
+    primaryGeneratedColumn: boolean;
+    isIndex: boolean;
+};
+export interface DatabaseConfig {
+    host: string;
+    port: number;
+    user: string;
+    password: string;
+    database: string;
+}
+export interface EnvDatabaseConfig {
+    DB_HOST: string;
+    DB_PORT: number;
+    DB_USERNAME: string;
+    DB_PASSWORD: string;
+    DB_DATABASE: string;
+}
+export interface YMLDatabaseConfig {
+    Host: string;
+    Port: number;
+    User: string;
+    Password: string;
+    Database: string;
+}
