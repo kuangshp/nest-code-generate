@@ -149,3 +149,11 @@ export type RowMap = { [k in string]: RowDataPacket[] };
 export type ColumnMap = { [k in string]: Column[] };
 
 export type MinxinProp = { jsType: any, primaryGeneratedColumn: boolean, isIndex: boolean };
+
+export enum GENFILE_TYPES {
+  ENTITY = 'entities',
+  CONTROLLER = 'controllers',
+  SERVICE = 'services',
+  FULL = 'full',
+  EMPTY = 'empty'
+}
