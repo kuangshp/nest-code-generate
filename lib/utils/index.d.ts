@@ -1,10 +1,7 @@
-import { ColumnType, RowDataPacket, Column } from '../types/types';
-/**
- * 下划线转驼峰命名
- * @param checkoutStr
- * @returns
- */
-export declare const underlineToHump: (fieldName: string) => string;
+import { ColumnType, RowDataPacket, Column, ColumnMap, RowMap, MinxinProp } from '../types/types';
+export declare const textCapitalize: (str: string) => string;
+export declare const textLowercase: (str: string) => string;
+export declare const underlineToHump: (name: string) => string;
 export declare const isArray: (value: any) => boolean;
 export declare const parseArg: (arg: string | undefined) => string | string[] | undefined;
 export declare const handler: (type: string) => {
@@ -14,6 +11,7 @@ export declare const handler: (type: string) => {
     scale: number | undefined;
     enums: any[] | undefined;
 };
-export declare const generateColumn: ({ Field, Type, Collation, Null, Key, Default, Extra, Privileges, Comment }: RowDataPacket) => Partial<Column & RowDataPacket & {
-    jsType: any;
-}>;
+export declare const generateColumn: ({ Field, Type, Collation, Null, Key, Default, Extra, Privileges, Comment }: RowDataPacket) => Partial<Column & RowDataPacket & MinxinProp>;
+export declare const getTableStructure: (tableNames: string[]) => Promise<RowMap>;
+export declare const transformStructure: (structure: RowMap) => ColumnMap;
+export declare const generateEntity: (columnStructure: ColumnMap) => void;
