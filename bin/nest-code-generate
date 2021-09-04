@@ -21,19 +21,27 @@
     v table_name*n module --tier
     v table_name*n module --curd
   */
-const program = require('commander');
-const { Parse } = require('../lib/index');
+const program = require("commander");
+const { Parse } = require("../lib/index");
 
 program
-  .version(`nest-code-generate ${require('../package.json').version}`)
-  .usage('nest-code-generate <table_name2,table_name2> <module_name> [options]');
+  .version(`nest-code-generate ${require("../package.json").version}`)
+  .usage(
+    "nest-code-generate <table_name2,table_name2> <module_name> [options]"
+  );
 
 program
-  .argument('<table-name>', 'name of the data table')
-  .argument('<module-name>', 'Module name')
-  .option('-e, --entity', 'Generate entity classes separately')
-  .option('-t, --tier', 'Generate entity classes and empty controller and service layers')
-  .option('-i, --curd', 'Generate entity classes and interfaces with CURD')
-  .action((tableName, moduleName, options) => new Parse(tableName, moduleName, options));
+  .argument("<table-name>", "name of the data table")
+  .argument("<module-name>", "Module name")
+  .option("-e, --entity", "Generate entity classes separately")
+  .option(
+    "-t, --tier",
+    "Generate entity classes and empty controller and service layers"
+  )
+  .option("-i, --curd", "Generate entity classes and interfaces with CURD")
+  .action(
+    (tableName, moduleName, options) =>
+      new Parse(tableName, moduleName, options)
+  );
 
 program.parse(process.argv);
