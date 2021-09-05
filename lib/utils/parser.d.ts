@@ -10,4 +10,4 @@ export declare const handler: (type: string) => {
 export declare const generateColumn: ({ Field, Type, Collation, Null, Key, Default, Extra, Privileges, Comment }: RowDataPacket) => Partial<Column & RowDataPacket & MinxinProp>;
 export declare const getTableStructure: (tableNames: string[]) => Promise<RowMap>;
 export declare const transformStructure: (structure: RowMap) => ColumnMap;
-export declare const generateEntity: (columnStructure: ColumnMap) => void;
+export declare const generateEntity: (columnStructure: ColumnMap, targetPath: string) => void;

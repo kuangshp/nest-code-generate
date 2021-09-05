@@ -21,19 +21,19 @@
     v table_name*n module --tier
     v table_name*n module --curd
   */
-const program = require('commander');
-const { Parse } = require('../lib/index');
+const program = require("commander");
+const { Parse } = require("../lib/index");
 
 program
-  .version(`nest-code-generate ${require('../package.json').version}`)
-  .usage('nest-code-generate <table_name2,table_name2> <module_name> [options]');
+  .version(`nest-code-generate@${require("../package.json").version}`)
+  .usage(
+    "<table_name2,table_name2...> [dir]"
+  );
 
 program
-  .argument('<table-name>', 'name of the data table')
-  .argument('<module-name>', 'Module name')
-  .option('-e, --entity', 'Generate entity classes separately')
-  .option('-t, --tier', 'Generate entity classes and empty controller and service layers')
-  .option('-i, --curd', 'Generate entity classes and interfaces with CURD')
-  .action((tableName, moduleName, options) => new Parse(tableName, moduleName, options));
+  .argument("<table-name>", "Name of the data table(数据表名称)")
+  .argument('[dir]', 'The name of the folder to mount, "src" by default(要挂载的文件夹名称, 默认src)')
+  .action((tableName, dir) => new Parse(tableName, dir));
 
 program.parse(process.argv);
+

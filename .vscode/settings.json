@@ -1,0 +1,24 @@
+{
+  "cSpell.words": [
+    "Dependences",
+    "GENFILE",
+    "JSTYPEMAP",
+    "Minxin",
+    "datetime",
+    "geomcollection",
+    "linestring",
+    "longblob",
+    "longtext",
+    "mediumblob",
+    "mediumint",
+    "mediumtext",
+    "multilinestring",
+    "multipoint",
+    "multipolygon",
+    "nvarchar",
+    "ormconfig",
+    "smallint",
+    "tinyblob",
+    "tinytext"
+  ]
+}
