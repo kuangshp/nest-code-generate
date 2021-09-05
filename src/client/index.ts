@@ -46,3 +46,4 @@ const config = readDatabaseConfig();
 
 // 创建连接
 export const db = new AsyncAliRds(config);
+

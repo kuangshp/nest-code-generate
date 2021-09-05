@@ -1,7 +1,7 @@
 import { ColumnType, RULES, HAS_LENGTH, HAS_PRECISION, HAS_SCALE, RowDataPacket, Column, JSTYPEMAP, ColumnMap, RowMap, MinxinProp } from '../types/types';
 import { textCapitalize, underlineToHump, isArray } from './index';
 import { db } from "../client";
-import { writeFileSync } from "fs";
+import { writeFileSync, mkdirSync, statSync } from "fs";
 import { join } from 'path';
 
 // 将参数解刨: ('table_name1', 'table_name2') => [table_name1, table_name2]
@@ -68,9 +68,9 @@ export const generateColumn = ({
   let primaryGeneratedColumn = false;
   const primary = Key === 'PRI' ? true : undefined;
 
-  if (typeof length !== 'number') length = undefined;
-  if (typeof precision !== 'number') precision = undefined;  
-  if (typeof scale !== 'number') precision = undefined;  
+  if (typeof length !== 'number' || Number.isNaN(length)) length = undefined;
+  if (typeof precision !== 'number' || Number.isNaN(length)) precision = undefined;  
+  if (typeof scale !== 'number' || Number.isNaN(length)) precision = undefined;  
   if (!isArray(enums)) enums = undefined;
   if (Collation === null) Collation = undefined;
   if (Extra === 'auto_increment' && primary) primaryGeneratedColumn = true;
@@ -98,11 +98,12 @@ export const generateColumn = ({
 // 获取表结构
 export const getTableStructure = async (tableNames: string[]): Promise<RowMap> => {
   // @ts-ignore
-  return tableNames.reduce(async (map: Promise<RowMap>, name: string) => {
+  const structure: Promise<RowMap> = tableNames.reduce(async (map: Promise<RowMap>, name: string) => {
     const newMap = (await map);
     newMap[name] = await db.query(`SHOW FULL FIELDS FROM ${name}`);
     return map;
   }, {});
+  return structure;
 }
 
 // 表结构转换
@@ -138,7 +139,7 @@ const generateOption = (row: Column & { jsType: string }) => {
 }
 
 // 生成实体类
-export const generateEntity = (columnStructure: ColumnMap) => {
+export const generateEntity = (columnStructure: ColumnMap, targetPath: string) => {
   Object.keys(columnStructure).forEach((tableName: string) => {
     const tableScheme = columnStructure[tableName];
     let scheme = "";
@@ -180,8 +181,20 @@ export const generateEntity = (columnStructure: ColumnMap) => {
 
     const entityStr = `import { Entity, Column${ importDependences() } } from 'typeorm';\n@Entity('${tableName}')\nexport class ${textCapitalize(tableName)}Entity {\n${scheme}\n}`;
 
-    const filepath = join(__dirname, '..', `../${tableName}.entity.ts`);
-    
+    const dirPath = join(targetPath, 'entities');
+    const filepath = join(dirPath, `${tableName}.entity.ts`);
+
+    try {
+      statSync(dirPath).isDirectory();
+    } catch (error) {
+      // 报错说明不存在, 不存在就创建一个
+      mkdirSync(dirPath);
+    }
+    /**
+     * 生成结构
+     * entities
+     *  tableName.entity.ts
+    */
     writeFileSync(filepath, entityStr);
   });
 }

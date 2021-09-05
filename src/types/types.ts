@@ -1,4 +1,4 @@
-export enum Options { entity = 'entity', tier = 'tier', curd = 'curd' };
+export enum Options { entity = 'entity', tier = 'tier', curd = 'curd', all = 'all' };
 export type OptionsKey = { [k in Options]?: boolean };
 
 export interface RowDataPacket {
@@ -69,7 +69,7 @@ export interface Column {
 
 
 export const HAS_LENGTH = ['char', 'varchar', 'nvarchar', 'binary'];
-export const HAS_PRECISION = ['dec', 'decimal', 'numeric', 'int', 'tinyint', 'smallint', 'mediumint', 'bigint'];
+export const HAS_PRECISION = ['dec', 'decimal', 'numeric', 'int', 'tinyint', 'smallint', 'mediumint', 'bigint', 'datetime', 'timestamp', 'time'];
 export const HAS_SCALE = ['dec', 'decimal', 'numeric', 'float', 'double'];
 export const JSTYPEMAP: { [k in ColumnType]: string | any[] | Object } = {
   [ColumnType.int]                 : 'number',
@@ -112,9 +112,9 @@ export const RULES: { [t in ColumnType]: RegExp } = {
   int                : /^int(\(\d+\))?$/i,
   decimal            : /^decimal(\((\d+,?)+\))?$/i,
   date               : /^date$/i,
-  datetime           : /^datetime$/i,
-  timestamp          : /^timestamp$/i,
-  time               : /^time$/i,
+  datetime           : /^datetime(\(\d+\))?$/i,
+  timestamp          : /^timestamp(\(\d+\))?$/i,
+  time               : /^time(\(\d+\))?$/i,
   year               : /^year$/i,
   char               : /^char(\(\d+\))?$/i,
   varchar            : /^varchar(\(\d+\))?$/i,
@@ -138,7 +138,7 @@ export const RULES: { [t in ColumnType]: RegExp } = {
   tinyint            : /^tinyint(\(\d+\))?$/i,
   smallint           : /^smallint$/i,
   mediumint          : /^mediumint$/i,
-  bigint             : /^bigint$/i,
+  bigint             : /^bigint(\(\d+\))?$/i,
   float              : /^float(\((\d+,?)+\))?$/i,
   double             : /^double(\((\d+,?)+\))?$/i,
   enum               : /^enum(\((.+?,?)?\))?$/i,
@@ -179,4 +179,9 @@ export enum GENFILE_TYPES {
   SERVICE = 'services',
   FULL = 'full',
   EMPTY = 'empty'
+}
+
+export interface ExternalOptions {
+  table: { table_name: string, table_info: object };
+  module_name: string;
 }
