@@ -13,6 +13,6 @@ export declare class Parse {
     parseOption(): Promise<void>;
     generateEntity(): Promise<void>;
     generateTier(): Promise<void>;
-    generateCURD(): void;
-    generateAll(): void;
+    generateCURD(): Promise<void>;
+    generateAll(): Promise<void>;
 }

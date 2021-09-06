@@ -72,3 +72,15 @@ export const emptyTheMkdir = (dirPath: string) => {
   }
 }
 
+// 判断是否存在表名
+export const hasTableName = (tableNames: string[], call: Function) => {
+  return new Promise(async (resolve, reject) => {
+    if (tableNames.length > 0) {
+      await call();
+      resolve(true);
+    } else {
+      reject(new TypeError('Please enter the <table_name> field: nest-code-generate <table_name> <module_name> [options]'));
+    }
+  });
+}
+
