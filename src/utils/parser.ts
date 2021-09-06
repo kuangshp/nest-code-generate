@@ -100,7 +100,11 @@ export const getTableStructure = async (tableNames: string[]): Promise<RowMap> =
   // @ts-ignore
   const structure: Promise<RowMap> = tableNames.reduce(async (map: Promise<RowMap>, name: string) => {
     const newMap = (await map);
-    newMap[name] = await db.query(`SHOW FULL FIELDS FROM ${name}`);
+    try {
+      newMap[name] = await db.query(`SHOW FULL FIELDS FROM ${name}`);
+    } catch (error) {
+      throw error;
+    }
     return map;
   }, {});
   return structure;
@@ -148,7 +152,7 @@ export const generateEntity = (columnStructure: ColumnMap, targetPath: string) =
 
     // 列表分割
     const segment = (row: Column & MinxinProp, option: string) => {
-      if (row.primaryGeneratedColumn) return `  @PrimaryGeneratedColumn()`;
+      if (row.primaryGeneratedColumn) return `  @PrimaryGeneratedColumn({\n${ option } \n  })`;
       if (row.isIndex) return `  @Index()\n  @Column({\n${ option } \n  })`;
       return `  @Column({\n${ option } \n  })`;
     };
