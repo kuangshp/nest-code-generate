@@ -2,7 +2,7 @@ import { render } from 'ejs'
 import { join, basename } from 'path'
 import { readdirSync, readFileSync, ensureDirSync, writeFileSync, statSync, existsSync } from 'fs-extra'
 import { GENFILE_TYPES } from '../types/types'
-import { underlineToHump } from '.'
+import { textCapitalize, underlineToHump } from '.'
 
 type TableOption = {
   table_name: string,
@@ -56,7 +56,7 @@ function genFiles(type: GENFILE_TYPES, options: Options, targetPath: string):voi
   options.is_full = type === GENFILE_TYPES.FULL
   const table = options.table
   if (table) {
-    table.table_uppercase_name = underlineToHump(table.table_name)
+    table.table_uppercase_name = textCapitalize(underlineToHump(table.table_name));
     if (type === GENFILE_TYPES.FULL || type === GENFILE_TYPES.EMPTY) {
       const renderSequlize = [ GENFILE_TYPES.ENTITY, GENFILE_TYPES.SERVICE, GENFILE_TYPES.CONTROLLER ]
       renderSequlize.forEach(seq => {
