@@ -5,7 +5,8 @@
   "main": "/lib/index.js",
   "bin": {
     "nest-code-generate": "bin/nest-code-generate",
-    "v": "bin/nest-code-generate"
+    "v": "bin/nest-code-generate",
+    "code-gen": "bin/nest-code-generate"
   },
   "scripts": {
     "build": "tsc",
