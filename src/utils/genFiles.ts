@@ -7,7 +7,7 @@ import { underlineToHump } from '.'
 type TableOption = {
   table_name: string,
   table_uppercase_name?: string,
-  table_info: object
+  table_info?: object
 }
 
 type Options = {
@@ -16,14 +16,10 @@ type Options = {
   is_full?: boolean
 }
 
-const cwd = process.cwd()
-
-const templateRoot = join(__dirname, '../../template')
+const templateRoot = join(__dirname, '..', '..', 'src', 'template')
 const entityTemplate = join(templateRoot, 'entities')
 const controllerTemplate = join(templateRoot, 'controllers')
 const serviceTemplate = join(templateRoot, 'services')
-
-const outpuRoot = join(cwd, 'demo')
 
 function renderFiles(fromPath: string, toPath: string, options: Options): void {
   ensureDirSync(toPath)
@@ -53,10 +49,10 @@ function renderFile(fromPath: string, toPath: string, options: Options): void {
   let content = readFileSync(fromPath, 'utf-8')
   content = render(content, options)
   writeFileSync(toPath, content, 'utf-8')
-  console.log(`create ${toPath} success`)
+  console.log(`create ${toPath} Success`)
 }
 
-function genFiles(type: GENFILE_TYPES, options: Options):void {
+function genFiles(type: GENFILE_TYPES, options: Options, targetPath: string):void {
   options.is_full = type === GENFILE_TYPES.FULL
   const table = options.table
   if (table) {
@@ -64,10 +60,10 @@ function genFiles(type: GENFILE_TYPES, options: Options):void {
     if (type === GENFILE_TYPES.FULL || type === GENFILE_TYPES.EMPTY) {
       const renderSequlize = [ GENFILE_TYPES.ENTITY, GENFILE_TYPES.SERVICE, GENFILE_TYPES.CONTROLLER ]
       renderSequlize.forEach(seq => {
-        genFile(seq, options)
+        genFile(seq, options, targetPath)
       })
     } else {
-      genFile(type, options)
+      genFile(type, options, targetPath)
     }
   } else {
     console.error('cant not read table info')
@@ -75,8 +71,7 @@ function genFiles(type: GENFILE_TYPES, options: Options):void {
   }
 }
 
-function genFile (type: GENFILE_TYPES, options: Options):void {
-  const { module_name } = options
+function genFile (type: GENFILE_TYPES, options: Options, targetPath: string):void {
   let entryPath = ''
   switch (type) {
     case GENFILE_TYPES.ENTITY:
@@ -89,8 +84,8 @@ function genFile (type: GENFILE_TYPES, options: Options):void {
       entryPath = serviceTemplate
       break;
   }
-  const modulePath = join(outpuRoot,  `${type}/${module_name}`)
-  renderFiles(entryPath, modulePath, options)
+
+  renderFiles(entryPath, targetPath, options)
 }
 
 

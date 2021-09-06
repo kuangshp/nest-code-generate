@@ -1,20 +1,18 @@
 import "dotenv/config";
-import { Options, OptionsKey } from './types/types';
+import { ExternalOptions, Options } from './types/types';
 export declare class Parse {
     tableName: string;
     moduleName: string;
-    options: OptionsKey;
+    targetDir: string;
+    targetPath: string;
     type: Options;
-    externalOptions: {
-        table: {
-            table_name: string;
-            table_info: object;
-        };
-        module_name: string;
-    } | null;
-    constructor(tableName: string, moduleName: string, options: OptionsKey);
-    parseOption(): void;
+    externalOptions: ExternalOptions;
+    constructor(tableName: string, dir: string);
+    exit(): void;
+    prompt(): Promise<void>;
+    parseOption(): Promise<void>;
     generateEntity(): Promise<void>;
-    generateTier(): void;
+    generateTier(): Promise<void>;
     generateCURD(): void;
+    generateAll(): void;
 }

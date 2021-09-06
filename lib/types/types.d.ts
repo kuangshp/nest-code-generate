@@ -1,7 +1,8 @@
 export declare enum Options {
     entity = "entity",
     tier = "tier",
-    curd = "curd"
+    curd = "curd",
+    all = "all"
 }
 export declare type OptionsKey = {
     [k in Options]?: boolean;
@@ -116,4 +117,11 @@ export declare enum GENFILE_TYPES {
     SERVICE = "services",
     FULL = "full",
     EMPTY = "empty"
+}
+export interface ExternalOptions {
+    table: {
+        table_name: string;
+        table_info: object;
+    };
+    module_name: string;
 }
