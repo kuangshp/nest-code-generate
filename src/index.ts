@@ -1,8 +1,10 @@
 import "dotenv/config";
-import { ExternalOptions, Options } from './types/types';
+import { ExternalOptions, Options, GENFILE_TYPES } from './types/types';
 import { getTableStructure, transformStructure, generateEntity } from "./utils/parser";
 import { prompt } from 'inquirer';
-import { findPath } from "./utils";
+import { findPath, emptyTheMkdir } from "./utils";
+import { genFiles } from './utils/genFiles';
+import { join } from "path";
 
 export class Parse {
   tableName         !: string;             // 数据表名城
@@ -25,7 +27,7 @@ export class Parse {
   // 发起询问
   async prompt() {
     /*
-      1.询问生成什么东西? -- 实体类 | 实体类+module | 实体类+curd | 全部生成
+      1.询问生成什么东西? -- 实体类 | 实体类+控制器和服务层方法 | 实体类+简单的增删改查 | 全部生成
       2.询问要挂载到哪个模块?
     */
     const { type, moduleName } = await prompt([
@@ -46,7 +48,7 @@ export class Parse {
       }
     ]);
     this.type = type;
-    this.moduleName = moduleName;
+    this.moduleName = moduleName ? moduleName : 'App';
 
     // 获取生成路径
     const targetPath = findPath(this.targetDir);
@@ -92,17 +94,23 @@ export class Parse {
     } else {
       throw new TypeError('Please enter the <table_name> field: nest-code-generate <table_name> <module_name> [options]');
     }
-
-
-
   }
 
   // 外部方法: 生成实体类和各种服务
-  generateTier() {
-    this.generateEntity();
+  async generateTier() {
+    const controllPath = join(this.targetPath, 'controllers');
+    const servicesPath = join(this.targetPath, 'services');
+
+    emptyTheMkdir(controllPath);
+    emptyTheMkdir(servicesPath);
+
+    await this.generateEntity();
+    const options = { is_full: false, module_name: this.moduleName, table: { table_name: this.tableName } };
+    genFiles(GENFILE_TYPES.CONTROLLER, options, controllPath);
+    genFiles(GENFILE_TYPES.SERVICE, options, servicesPath);
   }
 
-  // 外部方法: 生成实体类和CURD
+  // 外部方法: 实体类+控制器和服务层方法
   generateCURD() {
     this.generateEntity();
   }

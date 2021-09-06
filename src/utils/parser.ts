@@ -1,5 +1,5 @@
 import { ColumnType, RULES, HAS_LENGTH, HAS_PRECISION, HAS_SCALE, RowDataPacket, Column, JSTYPEMAP, ColumnMap, RowMap, MinxinProp } from '../types/types';
-import { textCapitalize, underlineToHump, isArray } from './index';
+import { textCapitalize, underlineToHump, isArray, emptyTheMkdir } from './index';
 import { db } from "../client";
 import { writeFileSync, mkdirSync, statSync } from "fs";
 import { join } from 'path';
@@ -184,17 +184,14 @@ export const generateEntity = (columnStructure: ColumnMap, targetPath: string) =
     const dirPath = join(targetPath, 'entities');
     const filepath = join(dirPath, `${tableName}.entity.ts`);
 
-    try {
-      statSync(dirPath).isDirectory();
-    } catch (error) {
-      // 报错说明不存在, 不存在就创建一个
-      mkdirSync(dirPath);
-    }
+    emptyTheMkdir(dirPath);
+
     /**
      * 生成结构
      * entities
      *  tableName.entity.ts
     */
     writeFileSync(filepath, entityStr);
+    console.log(`create ${filepath} Success`);
   });
 }

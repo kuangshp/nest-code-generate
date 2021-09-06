@@ -62,5 +62,13 @@ export const findPath = (dirName: string = 'src'): string => {
 
 }
 
-
+// 文件夹不存在创建文件夹
+export const emptyTheMkdir = (dirPath: string) => {
+  try {
+    statSync(dirPath).isDirectory();
+  } catch (error) {
+    // 报错说明不存在, 不存在就创建一个
+    mkdirSync(dirPath);
+  }
+}
 
