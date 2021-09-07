@@ -23,7 +23,7 @@
   ],
   "homepage": "https://github.com/kuangshp/nest-code-generate",
   "author": "kuangshp@126.com,981931727@qq.com",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "@types/inquirer": "^7.3.3",
     "ali-rds-async": "^0.0.2",
@@ -35,7 +35,8 @@
     "yaml": "^1.10.2"
   },
   "files": [
-    "lib/**/*"
+    "lib/**/*",
+    "bin/nest-code-generate"
   ],
   "devDependencies": {
     "@types/commander": "^2.12.2",
