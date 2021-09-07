@@ -4,40 +4,35 @@
 
 ## 使用步骤
 
-* 1、全局安装方式
-
-  
+- 1、全局安装方式
 
 ```properties
   npm install nest-code-generate -g
-  ```
+```
 
-* 2、局部安装方式
-
-  
+- 2、局部安装方式
 
 ```properties
   npm install nest-code-generate -D
-  ```
+```
 
-* 3、关于配置数据库连接信息
+- 3、关于配置数据库连接信息
 
   根目录下创建数据库连接信息 `ormconfig.yml` 文件
 
-  
-
 ```yaml
-  database:
-    host: 'localhost'
-    port: 3306
-    user: 'root'
-    password: 'root'
-    database: 'nest-code-generate'
-  ```
+database:
+  host: "localhost"
+  port: 3306
+  user: "root"
+  password: "root"
+  database: "nest-code-generate"
+```
 
-* 4、使用方式
+- 4、使用方式
 
 > 指令参数介绍
+
 ```properties
   code-gen <表名> [存放的目录(目录需要提前存在)]
 
@@ -48,20 +43,23 @@
 
 > 示例
 
-![table_name](/images/table_name.jpeg)
+![table_name](./images/table_name.jpeg)
+
 ```properties
 # 1.例如当前有一数据表, 名为type
-# 2.项目结构: 
+# 2.项目结构:
 ├── src
   ├── demo
 # 3.我们想将它挂载到src中的demo目录下
 ```
+
 > 执行命令
 
 `code-gen type` **或者** `code-gen type src` 进入配置选项如下图:
-![command_line](/images/command_line.png)
+![command_line](./images/command_line.png)
 
 > 目录生成结构
+
 ```properties
 # 选择Entity:
 ├── src
@@ -82,9 +80,11 @@
 # 选择CURD: 目录结构与Tier一致, 内容增加简单的增删改查
 # 选择All: 目前与CURD一致, 留作后期扩展使用
 ```
-> ⚠️注意事项  
+
+> ⚠️ 注意事项
 
 **1.路径问题**
+
 ```properties
 # 如果存放目录 不是唯一的, 例如下面的结构, lib和src文件夹下都存在一个demo文件夹, 此时如果想将生成内容放到src中的demo就有一点麻烦了, 不过好在, 存放路径支持"不完整路径", 请看下面的指令.
 ├── root
@@ -99,7 +99,8 @@ code-gen type lib/demo
 ```
 
 **2.模块输入项**
-![module](/images/module.png)
+![module](./images/module.png)
+
 ```properties
 # 该输入项代表生成文件要挂载到的模块, 用于模版生成的依赖引入路径和名字等
 # 这是一个可选输入项
