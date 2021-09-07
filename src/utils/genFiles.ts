@@ -16,7 +16,7 @@ type Options = {
   is_full?: boolean
 }
 
-const templateRoot = join(__dirname, '..', '..', '..', 'template')
+const templateRoot = join(__dirname, '..', '..', 'template')
 const entityTemplate = join(templateRoot, 'entities')
 const controllerTemplate = join(templateRoot, 'controllers')
 const serviceTemplate = join(templateRoot, 'services')
