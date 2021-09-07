@@ -12,23 +12,23 @@ export class <%= table.table_uppercase_name %>Service {
   private readonly <%= table.table_name %>Repository: Repository<<%= table.table_uppercase_name %>Entity>;
 
   async create<%= table.table_uppercase_name %>(data: <%= table.table_uppercase_name %>Entity): Promise<<%= table.table_uppercase_name %>Entity> {
-    return this.<%= table.table_name %>Repository.save(data)
+    return await this.<%= table.table_name %>Repository.save(data)
   }
 
   async remove<%= table.table_uppercase_name %>ById(id: number): Promise<DeleteResult> {
-    return this.<%= table.table_name %>Repository.delete(id)
+    return await this.<%= table.table_name %>Repository.delete(id)
   }
 
   async update<%= table.table_uppercase_name %>ById(id: number, data: <%= table.table_uppercase_name %>Entity): Promise<UpdateResult> {
-    return this.<%= table.table_name %>Repository.update(id, data)
+    return await this.<%= table.table_name %>Repository.update(id, data)
   }
 
   async find<%= table.table_uppercase_name %>s(): Promise<<%= table.table_uppercase_name %>Entity[]> {
-    return this.<%= table.table_name %>Repository.find()
+    return await this.<%= table.table_name %>Repository.find()
   }
 
-  async find<%= table.table_uppercase_name %>ById(id: number): Promise<<%= table.table_uppercase_name %>Entity[]> {
-    return this.<%= table.table_name %>Repository.findOne(id)
+  async find<%= table.table_uppercase_name %>ById(id: number): Promise<<%= table.table_uppercase_name %>Entity> {
+    return await this.<%= table.table_name %>Repository.findOne(id)
   }
   <% } %>
 }
