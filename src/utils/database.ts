@@ -4,7 +4,7 @@ import { DatabaseConfig, EnvDatabaseConfig, YMLDatabaseConfig } from '../types/t
 
 // 寻找node_modules所在的路径
 export const findNodeModules = () => {
-  let currentPath = __dirname;
+  let currentPath = process.cwd();
   let dir = readdirSync(currentPath);
   while (!dir.includes('node_modules')) {
     currentPath = join(currentPath, '..');
