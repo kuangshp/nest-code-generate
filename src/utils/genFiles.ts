@@ -1,7 +1,7 @@
 import { render } from 'ejs'
 import { join, basename } from 'path'
 import { readdirSync, readFileSync, ensureDirSync, writeFileSync, statSync, existsSync } from 'fs-extra'
-import { GENFILE_TYPES } from '../types/types'
+import { GENFILE_TYPES, PathOptions } from '../types/types'
 import { textCapitalize, underlineToHump } from '.'
 
 type TableOption = {
@@ -52,13 +52,13 @@ function renderFile(fromPath: string, toPath: string, options: Options): void {
   console.log(`create ${toPath} Success`)
 }
 
-function genFiles(type: GENFILE_TYPES, options: Options, targetPath: string):void {
+function genFiles(type: GENFILE_TYPES, options: Options, targetPath: PathOptions):void {
   options.is_full = type === GENFILE_TYPES.FULL
   const table = options.table
   if (table) {
     table.table_uppercase_name = textCapitalize(underlineToHump(table.table_name));
     if (type === GENFILE_TYPES.FULL || type === GENFILE_TYPES.EMPTY) {
-      const renderSequlize = [ GENFILE_TYPES.ENTITY, GENFILE_TYPES.SERVICE, GENFILE_TYPES.CONTROLLER ]
+      const renderSequlize = [ GENFILE_TYPES.SERVICE, GENFILE_TYPES.CONTROLLER ]
       renderSequlize.forEach(seq => {
         genFile(seq, options, targetPath)
       })
@@ -71,21 +71,23 @@ function genFiles(type: GENFILE_TYPES, options: Options, targetPath: string):voi
   }
 }
 
-function genFile (type: GENFILE_TYPES, options: Options, targetPath: string):void {
+function genFile (type: GENFILE_TYPES, options: Options, targetPath: PathOptions):void {
   let entryPath = ''
-  switch (type) {
-    case GENFILE_TYPES.ENTITY:
-      entryPath = entityTemplate
-      break;
-    case GENFILE_TYPES.CONTROLLER:
+  let genPath = '';
+  const genOptions = {
+    [GENFILE_TYPES.CONTROLLER]: () => {
       entryPath = controllerTemplate
-      break;
-    default:
+      genPath = targetPath.controllers
+    },
+    [GENFILE_TYPES.SERVICE]: () => {
       entryPath = serviceTemplate
-      break;
-  }
+      genPath = targetPath.services
+    }
+  } as { [k in GENFILE_TYPES]: () => void };
 
-  renderFiles(entryPath, targetPath, options)
+  genOptions[type]();
+
+  renderFiles(entryPath, genPath, options)
 }
 
 

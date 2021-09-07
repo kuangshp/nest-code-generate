@@ -1,6 +1,6 @@
 database:
-  Host: "localhost"
-  Port: 3306
-  User: "root"
-  Password: "123456"
-  Database: "yst_shop"
+  host: "localhost"
+  port: 3306
+  user: "root"
+  password: "password"
+  database: "nest-code-generate"
