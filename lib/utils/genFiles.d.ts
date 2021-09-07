@@ -1,4 +1,4 @@
-import { GENFILE_TYPES } from '../types/types';
+import { GENFILE_TYPES, PathOptions } from '../types/types';
 declare type TableOption = {
     table_name: string;
     table_uppercase_name?: string;
@@ -9,5 +9,5 @@ declare type Options = {
     module_name: string;
     is_full?: boolean;
 };
-declare function genFiles(type: GENFILE_TYPES, options: Options, targetPath: string): void;
+declare function genFiles(type: GENFILE_TYPES, options: Options, targetPath: PathOptions): void;
 export { genFiles };

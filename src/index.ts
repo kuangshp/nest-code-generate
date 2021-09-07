@@ -1,5 +1,5 @@
 import "dotenv/config";
-import { ExternalOptions, Options, GENFILE_TYPES } from './types/types';
+import { ExternalOptions, Options, GENFILE_TYPES, PathOptions } from './types/types';
 import { getTableStructure, transformStructure, generateEntity } from "./utils/parser";
 import { prompt } from 'inquirer';
 import { findPath, emptyTheMkdir, hasTableName } from "./utils";
@@ -100,7 +100,7 @@ export class Parse {
           const collectPath = {
             controllers: join(this.targetPath, 'controllers'),
             services: join(this.targetPath, 'services')
-          };
+          } as PathOptions;
       
           emptyTheMkdir(collectPath.controllers);
           emptyTheMkdir(collectPath.services);
@@ -122,7 +122,7 @@ export class Parse {
       const collectPath = {
         controllers: join(this.targetPath, 'controllers'),
         services: join(this.targetPath, 'services')
-      };
+      } as PathOptions;
   
       emptyTheMkdir(collectPath.controllers);
       emptyTheMkdir(collectPath.services);

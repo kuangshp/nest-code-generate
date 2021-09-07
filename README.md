@@ -28,11 +28,11 @@
 
 ```yaml
   database:
-    Host: 'localhost'
-    Port: 3306
-    User: 'root'
-    Password: 'root'
-    Database: 'nest-code-generate'
+    host: 'localhost'
+    port: 3306
+    user: 'root'
+    password: 'root'
+    database: 'nest-code-generate'
   ```
 
 * 4、使用方式

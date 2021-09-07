@@ -105,11 +105,11 @@ export interface EnvDatabaseConfig {
     DB_DATABASE: string;
 }
 export interface YMLDatabaseConfig {
-    Host: string;
-    Port: number;
-    User: string;
-    Password: string;
-    Database: string;
+    host: string;
+    port: number;
+    user: string;
+    password: string;
+    database: string;
 }
 export declare enum GENFILE_TYPES {
     ENTITY = "entities",
@@ -125,3 +125,6 @@ export interface ExternalOptions {
     };
     module_name: string;
 }
+export declare type PathOptions = {
+    [k in GENFILE_TYPES]: string;
+};

@@ -1,2 +1,2 @@
-export declare class typeController {
+export declare class TypeController {
 }

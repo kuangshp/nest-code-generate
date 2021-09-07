@@ -167,21 +167,24 @@ export interface EnvDatabaseConfig {
 }
 
 export interface YMLDatabaseConfig {
-  Host         : string;
-  Port         : number;
-  User         : string;
-  Password     : string;
-  Database     : string;
+  host         : string;
+  port         : number;
+  user         : string;
+  password     : string;
+  database     : string;
 }
 export enum GENFILE_TYPES {
-  ENTITY = 'entities',
-  CONTROLLER = 'controllers',
-  SERVICE = 'services',
-  FULL = 'full',
-  EMPTY = 'empty'
+  ENTITY       = 'entities',
+  CONTROLLER   = 'controllers',
+  SERVICE      = 'services',
+  FULL         = 'full',
+  EMPTY        = 'empty'
 }
 
 export interface ExternalOptions {
-  table: { table_name: string, table_info: object };
-  module_name: string;
+  table        : { table_name: string, table_info: object };
+  module_name  : string;
 }
+
+
+export type PathOptions = { [k in GENFILE_TYPES]: string };

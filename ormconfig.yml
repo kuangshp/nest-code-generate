@@ -1,6 +1,6 @@
 database:
-  Host: '172.16.183.175'
-  Port: 3306
-  User: 'root'
-  Password: 'password'
-  Database: 'nest-code-generate'
+  host: "localhost"
+  port: 3306
+  user: "root"
+  password: "password"
+  database: "nest-code-generate"
