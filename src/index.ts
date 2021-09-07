@@ -30,7 +30,7 @@ export class Parse {
       1.询问生成什么东西? -- 实体类 | 实体类+控制器和服务层方法 | 实体类+简单的增删改查 | 全部生成
       2.询问要挂载到哪个模块?
     */
-    const { type, moduleName } = await prompt([
+    const { type } = await prompt([
       {
         name: 'type',
         type: 'list',
@@ -49,10 +49,11 @@ export class Parse {
       // }
     ]);
     this.type = type;
-    this.moduleName = moduleName ? moduleName : 'App';
+    // this.moduleName = moduleName ? moduleName : 'App';
 
     // 获取生成路径
     const targetPath = findPath(this.targetDir);
+    emptyTheMkdir(targetPath);
     this.targetPath = targetPath;
 
     this.parseOption();
@@ -98,18 +99,21 @@ export class Parse {
     await hasTableName(tableNames, async () => {
       await Promise.all(
         tableNames.map(async (name: string) => {
-          const collectPath = {
-            controllers: join(this.targetPath, 'controllers'),
-            services: join(this.targetPath, 'services')
+          emptyTheMkdir(join(this.targetPath, 'controllers'));
+          emptyTheMkdir(join(this.targetPath, 'services'));
+
+          const childCollectPath = {
+            controllers: join(this.targetPath, 'controllers', name),
+            services: join(this.targetPath, 'services', name)
           } as PathOptions;
-      
-          emptyTheMkdir(collectPath.controllers);
-          emptyTheMkdir(collectPath.services);
+
+          emptyTheMkdir(childCollectPath.controllers);
+          emptyTheMkdir(childCollectPath.services);
       
           await this.generateEntity();
-          const options = { module_name: this.moduleName, table: { table_name: name } };
-          genFiles(GENFILE_TYPES.CONTROLLER, options, collectPath);
-          genFiles(GENFILE_TYPES.SERVICE, options, collectPath);
+          const options = { table: { table_name: name } };
+          genFiles(GENFILE_TYPES.CONTROLLER, options, childCollectPath);
+          genFiles(GENFILE_TYPES.SERVICE, options, childCollectPath);
         })
       );
     });
@@ -120,17 +124,25 @@ export class Parse {
     const tableNames: string[] = this.tableName.split(',');
 
     await hasTableName(tableNames, async () => {
-      const collectPath = {
-        controllers: join(this.targetPath, 'controllers'),
-        services: join(this.targetPath, 'services')
-      } as PathOptions;
-  
-      emptyTheMkdir(collectPath.controllers);
-      emptyTheMkdir(collectPath.services);
-  
-      await this.generateEntity();
-      const options = { module_name: this.moduleName, table: { table_name: this.tableName } };
-      genFiles(GENFILE_TYPES.FULL, options, collectPath);
+      await Promise.all(
+        tableNames.map(async (name: string) => {
+          emptyTheMkdir(join(this.targetPath, 'controllers'));
+          emptyTheMkdir(join(this.targetPath, 'services'));
+
+          const childCollectPath = {
+            controllers: join(this.targetPath, 'controllers', name),
+            services: join(this.targetPath, 'services', name)
+          } as PathOptions;
+
+          emptyTheMkdir(childCollectPath.controllers);
+          emptyTheMkdir(childCollectPath.services);
+      
+          await this.generateEntity();
+          const options = { table: { table_name: name } };
+          genFiles(GENFILE_TYPES.FULL, options, childCollectPath);
+        })
+      );
+
     });
   }
 

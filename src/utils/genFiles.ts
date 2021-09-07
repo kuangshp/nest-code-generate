@@ -12,7 +12,7 @@ type TableOption = {
 
 type Options = {
   table: TableOption | null,
-  module_name: string,
+  module_name?: string,
   is_full?: boolean
 }
 
