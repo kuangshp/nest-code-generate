@@ -43,7 +43,7 @@ database:
 
 > 示例
 
-![table_name](./images/table_name.jpeg)
+![table_name](https://shuiping-code.oss-cn-shenzhen.aliyuncs.com/static/table_name.jpeg)
 
 ```properties
 # 1.例如当前有一数据表, 名为type
@@ -56,7 +56,7 @@ database:
 > 执行命令
 
 `code-gen type` **或者** `code-gen type src` 进入配置选项如下图:
-![command_line](./images/command_line.png)
+![command_line](https://shuiping-code.oss-cn-shenzhen.aliyuncs.com/static/command_line.png)
 
 > 目录生成结构
 
@@ -99,7 +99,7 @@ code-gen type lib/demo
 ```
 
 **2.模块输入项**
-![module](./images/module.png)
+![module](https://shuiping-code.oss-cn-shenzhen.aliyuncs.com/static/module.png)
 
 ```properties
 # 该输入项代表生成文件要挂载到的模块, 用于模版生成的依赖引入路径和名字等
