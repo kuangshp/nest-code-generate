@@ -1,8 +1,8 @@
 <% if (is_full) { %>
 import { Controller, Delete, Get, Post, Put, Body, Param, ParseIntPipe } from '@nestjs/common';
 import { DeleteResult, UpdateResult } from 'typeorm';
-import { <%= table.table_uppercase_name %>Entity } from './../entities/<%= module_name %>/<%= table.table_name %>.entity';
-import { <%= table.table_uppercase_name %>Service } from './../services/<%= module_name %>/<%= table.table_name %>.service';
+import { <%= table.table_uppercase_name %>Entity } from './../entities/<%= table.table_name %>.entity';
+import { <%= table.table_uppercase_name %>Service } from './../services/<%= table.table_name %>.service';
 <% } else { %>
 import { Controller } from '@nestjs/common';
 <% } %>
@@ -11,24 +11,25 @@ import { Controller } from '@nestjs/common';
 export class <%= table.table_uppercase_name %>Controller {
   <% if (is_full) { %>
   constructor(private readonly <%= table.table_name %>Service: <%= table.table_uppercase_name %>Service) {}
-  @Get()
-  async find(): Promise<<%= table.table_uppercase_name %>Entity[]> {
-    return await this.<%= table.table_name %>Service.find()
-  }
 
   @Post()
-  async create(@Body() data: <%= table.table_uppercase_name %>Entity): Promise<<%= table.table_uppercase_name %>Entity> {
-    return await this.<%= table.table_name %>Service.create(data)
+  async create<%= table.table_uppercase_name %>(@Body() data: <%= table.table_uppercase_name %>Entity): Promise<<%= table.table_uppercase_name %>Entity> {
+    return await this.<%= table.table_name %>Service.create<%= table.table_uppercase_name %>(data)
   }
 
   @Delete(':id')
-  async remove(@Param('id', new ParseIntPipe()) id: number): Promise<DeleteResult> {
-    return await this.<%= table.table_name %>Service.remove(id)
+  async remove<%= table.table_uppercase_name %>(@Param('id', new ParseIntPipe()) id: number): Promise<DeleteResult> {
+    return await this.<%= table.table_name %>Service.remove<%= table.table_uppercase_name %>(id)
   }
 
   @Put(':id')
-  async update(@Param('id', new ParseIntPipe()) id: number, @Body() data: <%= table.table_uppercase_name %>Entity): Promise<UpdateResult> {
-    return await this.<%= table.table_name %>Service.update(id, data)
+  async update<%= table.table_uppercase_name %>(@Param('id', new ParseIntPipe()) id: number, @Body() data: <%= table.table_uppercase_name %>Entity): Promise<UpdateResult> {
+    return await this.<%= table.table_name %>Service.update<%= table.table_uppercase_name %>(id, data)
+  }
+
+  @Get()
+  async find<%= table.table_uppercase_name %>(): Promise<<%= table.table_uppercase_name %>Entity[]> {
+    return await this.<%= table.table_name %>Service.find<%= table.table_uppercase_name %>()
   }
 
   <% } %>
