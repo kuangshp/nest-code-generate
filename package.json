@@ -1,6 +1,6 @@
 {
   "name": "nest-code-generate",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "扩展@nestjs/cli的功能,直接输入表名生成对应的实体类、控制器、服务层",
   "main": "/lib/index.js",
   "bin": {
