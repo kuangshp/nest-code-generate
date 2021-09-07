@@ -22,7 +22,7 @@
     "nestjs/cli"
   ],
   "homepage": "https://github.com/kuangshp/nest-code-generate",
-  "author": "kuangshp@126.com,981931727@qq.com",
+  "author": "kuangshp@126.com,981931727@qq.com,836133817@qq.com",
   "license": "MIT",
   "dependencies": {
     "@types/inquirer": "^7.3.3",
