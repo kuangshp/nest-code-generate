@@ -36,6 +36,5 @@ export class <%= table.table_uppercase_name %>Controller {
   async find<%= table.table_uppercase_name %>ById(@Param('id', new ParseIntPipe()) id: number): Promise<<%= table.table_uppercase_name %>Entity> {
     return await this.<%= table.table_name %>Service.find<%= table.table_uppercase_name %>ById(id)
   }
-
   <% } %>
 }

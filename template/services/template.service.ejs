@@ -30,6 +30,5 @@ export class <%= table.table_uppercase_name %>Service {
   async find<%= table.table_uppercase_name %>ById(id: number): Promise<<%= table.table_uppercase_name %>Entity[]> {
     return this.<%= table.table_name %>Repository.findOne(id)
   }
-
   <% } %>
 }
