@@ -87,7 +87,7 @@ export const generateColumn = ({
     default: Default! === null ? undefined : Default!,
     comment: Comment === '' ? undefined : Comment,
     update: Privileges.includes('update') ? undefined : false,
-    unique: Key === 'PRI' ? true : undefined,
+    // unique: Key === 'PRI' ? true : undefined,
     jsType: type === 'enum' ? JSON.stringify(enums) : JSTYPEMAP[type!],
     isIndex: Key === 'MUL'
   }
