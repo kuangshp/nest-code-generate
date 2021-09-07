@@ -1,2 +1,2 @@
-export declare class typeService {
+export declare class TypeService {
 }
