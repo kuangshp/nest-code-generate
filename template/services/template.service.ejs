@@ -15,16 +15,20 @@ export class <%= table.table_uppercase_name %>Service {
     return this.<%= table.table_name %>Repository.save(data)
   }
 
-  async remove<%= table.table_uppercase_name %>(id: number): Promise<DeleteResult> {
+  async remove<%= table.table_uppercase_name %>ById(id: number): Promise<DeleteResult> {
     return this.<%= table.table_name %>Repository.delete(id)
   }
 
-  async update<%= table.table_uppercase_name %>(id: number, data: <%= table.table_uppercase_name %>Entity): Promise<UpdateResult> {
+  async update<%= table.table_uppercase_name %>ById(id: number, data: <%= table.table_uppercase_name %>Entity): Promise<UpdateResult> {
     return this.<%= table.table_name %>Repository.update(id, data)
   }
 
-  async find<%= table.table_uppercase_name %>(): Promise<<%= table.table_uppercase_name %>Entity[]> {
+  async find<%= table.table_uppercase_name %>s(): Promise<<%= table.table_uppercase_name %>Entity[]> {
     return this.<%= table.table_name %>Repository.find()
+  }
+
+  async find<%= table.table_uppercase_name %>ById(id: number): Promise<<%= table.table_uppercase_name %>Entity[]> {
+    return this.<%= table.table_name %>Repository.findOne(id)
   }
 
   <% } %>

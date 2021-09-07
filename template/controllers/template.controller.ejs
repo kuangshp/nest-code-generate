@@ -18,18 +18,23 @@ export class <%= table.table_uppercase_name %>Controller {
   }
 
   @Delete(':id')
-  async remove<%= table.table_uppercase_name %>(@Param('id', new ParseIntPipe()) id: number): Promise<DeleteResult> {
-    return await this.<%= table.table_name %>Service.remove<%= table.table_uppercase_name %>(id)
+  async remove<%= table.table_uppercase_name %>ById(@Param('id', new ParseIntPipe()) id: number): Promise<DeleteResult> {
+    return await this.<%= table.table_name %>Service.remove<%= table.table_uppercase_name %>ById(id)
   }
 
   @Put(':id')
-  async update<%= table.table_uppercase_name %>(@Param('id', new ParseIntPipe()) id: number, @Body() data: <%= table.table_uppercase_name %>Entity): Promise<UpdateResult> {
-    return await this.<%= table.table_name %>Service.update<%= table.table_uppercase_name %>(id, data)
+  async update<%= table.table_uppercase_name %>ById(@Param('id', new ParseIntPipe()) id: number, @Body() data: <%= table.table_uppercase_name %>Entity): Promise<UpdateResult> {
+    return await this.<%= table.table_name %>Service.update<%= table.table_uppercase_name %>ById(id, data)
   }
 
   @Get()
-  async find<%= table.table_uppercase_name %>(): Promise<<%= table.table_uppercase_name %>Entity[]> {
-    return await this.<%= table.table_name %>Service.find<%= table.table_uppercase_name %>()
+  async find<%= table.table_uppercase_name %>s(): Promise<<%= table.table_uppercase_name %>Entity[]> {
+    return await this.<%= table.table_name %>Service.find<%= table.table_uppercase_name %>s()
+  }
+
+  @Get(':id')
+  async find<%= table.table_uppercase_name %>ById(@Param('id', new ParseIntPipe()) id: number): Promise<<%= table.table_uppercase_name %>Entity> {
+    return await this.<%= table.table_name %>Service.find<%= table.table_uppercase_name %>ById(id)
   }
 
   <% } %>
