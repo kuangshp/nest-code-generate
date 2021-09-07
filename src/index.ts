@@ -90,23 +90,25 @@ export class Parse {
     });
   }
 
-  // 外部方法: 生成实体类和各种服务
+  // 外部方法: 生成实体类和控制器和服务层方法
   async generateTier() {
     const tableNames: string[] = this.tableName.split(',');
 
     await hasTableName(tableNames, async () => {
       await Promise.all(
         tableNames.map(async (name: string) => {
-          const controllerPath = join(this.targetPath, 'controllers');
-          const servicesPath = join(this.targetPath, 'services');
+          const collectPath = {
+            controllers: join(this.targetPath, 'controllers'),
+            services: join(this.targetPath, 'services')
+          };
       
-          emptyTheMkdir(controllerPath);
-          emptyTheMkdir(servicesPath);
+          emptyTheMkdir(collectPath.controllers);
+          emptyTheMkdir(collectPath.services);
       
           await this.generateEntity();
           const options = { module_name: this.moduleName, table: { table_name: name } };
-          genFiles(GENFILE_TYPES.CONTROLLER, options, controllerPath);
-          genFiles(GENFILE_TYPES.SERVICE, options, servicesPath);
+          genFiles(GENFILE_TYPES.CONTROLLER, options, collectPath);
+          genFiles(GENFILE_TYPES.SERVICE, options, collectPath);
         })
       );
     });
@@ -114,17 +116,21 @@ export class Parse {
 
   // 外部方法: 实体类+控制器和服务层方法
   async generateCURD() {
-    /* 这个方法还不行！！！！ */
-    const controllerPath = join(this.targetPath, 'controllers');
-    const servicesPath = join(this.targetPath, 'services');
+    const tableNames: string[] = this.tableName.split(',');
 
-    emptyTheMkdir(controllerPath);
-    emptyTheMkdir(servicesPath);
-
-    await this.generateEntity();
-    const options = { module_name: this.moduleName, table: { table_name: this.tableName } };
-    genFiles(GENFILE_TYPES.FULL, options, controllerPath);
-    // genFiles(GENFILE_TYPES.SERVICE, options, servicesPath);
+    await hasTableName(tableNames, async () => {
+      const collectPath = {
+        controllers: join(this.targetPath, 'controllers'),
+        services: join(this.targetPath, 'services')
+      };
+  
+      emptyTheMkdir(collectPath.controllers);
+      emptyTheMkdir(collectPath.services);
+  
+      await this.generateEntity();
+      const options = { module_name: this.moduleName, table: { table_name: this.tableName } };
+      genFiles(GENFILE_TYPES.FULL, options, collectPath);
+    });
   }
 
   // 综合方法: 生成所有
