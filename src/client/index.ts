@@ -1,6 +1,6 @@
 import AsyncAliRds from "ali-rds-async";
 import { findNodeModules, transformOptions } from "../utils/database";
-import { resolve } from 'path';
+import { resolve, join } from 'path';
 import { readFileSync } from 'fs';
 import { DatabaseConfig, YMLDatabaseConfig } from '../types/types';
 import * as YAML from 'yaml';
@@ -13,7 +13,7 @@ export const readDatabaseConfig = () => {
   let config: DatabaseConfig;
   if (dir.includes('ormconfig.yml')) {
     try {
-      const file = readFileSync(resolve(path, 'ormconfig.yml'), 'utf8');
+      const file = readFileSync(join(process.cwd(), 'ormconfig.yml'), 'utf8');
       const ymlConfig = YAML.parse(file).database as YMLDatabaseConfig;
       config = transformOptions(ymlConfig);
     } catch (error) {
