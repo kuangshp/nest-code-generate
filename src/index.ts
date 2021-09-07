@@ -41,11 +41,12 @@ export class Parse {
           { name: 'CURD    (实体类 + 简单的增删改查)', value: 'curd' },
           { name: 'All     (全部生成: 实体类 + 控制器和服务层方法 + 简单的增删改查)', value: 'all' }
         ]
-      }, {
-        name: 'moduleName',
-        type: 'input',
-        message: 'Which module do you want to mount to(要挂载到哪个模块)?: '
-      }
+      }, 
+      // {
+      //   name: 'moduleName',
+      //   type: 'input',
+      //   message: 'Which module do you want to mount to(要挂载到哪个模块)?: '
+      // }
     ]);
     this.type = type;
     this.moduleName = moduleName ? moduleName : 'App';

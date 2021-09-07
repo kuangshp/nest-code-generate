@@ -1,6 +1,6 @@
 import AsyncAliRds from "ali-rds-async";
 import { findNodeModules, transformOptions } from "../utils/database";
-import { resolve, join } from 'path';
+import { join } from 'path';
 import { readFileSync } from 'fs';
 import { DatabaseConfig, YMLDatabaseConfig } from '../types/types';
 import * as YAML from 'yaml';

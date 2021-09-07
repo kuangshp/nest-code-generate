@@ -66,21 +66,19 @@ export const generateColumn = ({
   let { type, length, precision, scale, enums } = handler(Type);
 
   let primaryGeneratedColumn = false;
-  const primary = Key === 'PRI' ? true : undefined;
 
   if (typeof length !== 'number' || Number.isNaN(length)) length = undefined;
   if (typeof precision !== 'number' || Number.isNaN(length)) precision = undefined;  
   if (typeof scale !== 'number' || Number.isNaN(length)) precision = undefined;  
   if (!isArray(enums)) enums = undefined;
   if (Collation === null) Collation = undefined;
-  if (Extra === 'auto_increment' && primary) primaryGeneratedColumn = true;
+  if (Extra === 'auto_increment') primaryGeneratedColumn = true;
 
   return { 
     type, 
     length, 
     precision, 
     scale, 
-    primary,
     primaryGeneratedColumn,
     enum: JSON.stringify(enums),
     name: Field,
