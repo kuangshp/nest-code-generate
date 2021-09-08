@@ -6,7 +6,7 @@ declare type TableOption = {
 };
 declare type Options = {
     table: TableOption | null;
-    module_name: string;
+    module_name?: string;
     is_full?: boolean;
 };
 declare function genFiles(type: GENFILE_TYPES, options: Options, targetPath: PathOptions): void;
