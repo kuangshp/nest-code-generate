@@ -13,7 +13,7 @@ export const readDatabaseConfig = () => {
   let config: DatabaseConfig;
   if (dir.includes('ormconfig.yml')) {
     try {
-      const file = readFileSync(join(process.cwd(), 'ormconfig.yml'), 'utf8');
+      const file = readFileSync(join(path, 'ormconfig.yml'), 'utf8');
       const ymlConfig = YAML.parse(file).database as YMLDatabaseConfig;
       config = transformOptions(ymlConfig);
     } catch (error) {
