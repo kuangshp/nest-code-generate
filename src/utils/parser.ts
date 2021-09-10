@@ -1,7 +1,7 @@
-import { ColumnType, RULES, HAS_LENGTH, HAS_PRECISION, HAS_SCALE, RowDataPacket, Column, JSTYPEMAP, ColumnMap, RowMap, MinxinProp } from '../types/types';
+import { ColumnType, RULES, HAS_LENGTH, HAS_PRECISION, HAS_SCALE, RowDataPacket, Column, JSTYPEMAP, ColumnMap, RowMap, MinxinProp } from '../typings/types';
 import { textCapitalize, underlineToHump, isArray, emptyTheMkdir } from './index';
 import { db } from "../client";
-import { writeFileSync, mkdirSync, statSync } from "fs";
+import { writeFileSync } from "fs";
 import { join } from 'path';
 
 // 将参数解刨: ('table_name1', 'table_name2') => [table_name1, table_name2]
@@ -109,9 +109,15 @@ export const getTableStructure = async (tableNames: string[]): Promise<RowMap> =
 }
 
 // 表结构转换
-export const transformStructure = (structure: RowMap): ColumnMap => {
+export const transformStructure = (structure: RowMap, collect: string[]): ColumnMap => {
   return Object.keys(structure).reduce((map: any, tableName: string) => {
-    map[tableName] = structure[tableName].map((row: RowDataPacket) => generateColumn(row));
+    map[tableName] = [];
+    structure[tableName].forEach((row: RowDataPacket) => {
+      // 过滤基类字段
+      if (!collect.includes(row.Field)) {
+        map[tableName].push(generateColumn(row));
+      }
+    });
     return map;
   }, {});
 }
@@ -141,7 +147,7 @@ const generateOption = (row: Column & { jsType: string }) => {
 }
 
 // 生成实体类
-export const generateEntity = (columnStructure: ColumnMap, targetPath: string) => {
+export const generateEntity = (columnStructure: ColumnMap, targetPath: string, baseName: string) => {
   Object.keys(columnStructure).forEach((tableName: string) => {
     const tableScheme = columnStructure[tableName];
     let scheme = "";
@@ -169,6 +175,9 @@ export const generateEntity = (columnStructure: ColumnMap, targetPath: string) =
       if (row.primaryGeneratedColumn) hasPrimary = true;
     }
 
+    // 是否存在基类
+    const hasBaseEntity = () => baseName !== '' ? `extends ${baseName}` : '';
+
     tableScheme.forEach((r: any) => {
       const row = r as (Column & MinxinProp);
 
@@ -181,7 +190,7 @@ export const generateEntity = (columnStructure: ColumnMap, targetPath: string) =
     });
 
 
-    const entityStr = `import { Entity, Column${ importDependences() } } from 'typeorm';\n@Entity('${tableName}')\nexport class ${textCapitalize(tableName)}Entity {\n${scheme}\n}`;
+    const entityStr = `import { Entity, Column${ importDependences() } } from 'typeorm';\n\n@Entity('${tableName}')\nexport class ${textCapitalize(tableName)}Entity ${hasBaseEntity()} {\n${scheme}\n}`;
 
     const dirPath = join(targetPath, 'entities');
     const filepath = join(dirPath, `${tableName}.entity.ts`);

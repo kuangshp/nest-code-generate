@@ -1,4 +1,4 @@
-import { GENFILE_TYPES, PathOptions } from '../types/types';
+import { GENFILE_TYPES, PathOptions } from '../typings/types';
 declare type TableOption = {
     table_name: string;
     table_uppercase_name?: string;

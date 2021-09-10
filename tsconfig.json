@@ -9,7 +9,7 @@
     "outDir": "./lib" /* 输出目录 */,
     "strict": true, /* Enable all strict type-checking options. */
     "typeRoots": [
-      "./types",
+      "./typings",
       "./node_modules/@types"
     ]
   },
