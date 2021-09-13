@@ -18,8 +18,8 @@ export class <%= table.table_uppercase_name %>Controller {
   }
 
   @Delete(':id')
-  async remove<%= table.table_uppercase_name %>ById(@Param('id', new ParseIntPipe()) id: number): Promise<DeleteResult> {
-    return await this.<%= table.table_name %>Service.remove<%= table.table_uppercase_name %>ById(id)
+  async delete<%= table.table_uppercase_name %>ById(@Param('id', new ParseIntPipe()) id: number): Promise<DeleteResult> {
+    return await this.<%= table.table_name %>Service.delete<%= table.table_uppercase_name %>ById(id)
   }
 
   @Put(':id')
@@ -28,8 +28,8 @@ export class <%= table.table_uppercase_name %>Controller {
   }
 
   @Get()
-  async find<%= table.table_uppercase_name %>s(): Promise<<%= table.table_uppercase_name %>Entity[]> {
-    return await this.<%= table.table_name %>Service.find<%= table.table_uppercase_name %>s()
+  async find<%= table.table_uppercase_name %>List(): Promise<<%= table.table_uppercase_name %>Entity[]> {
+    return await this.<%= table.table_name %>Service.find<%= table.table_uppercase_name %>List()
   }
 
   @Get(':id')

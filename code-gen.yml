@@ -9,4 +9,4 @@ data_source:
 # 配置字段收取及基础类(可选，如果没有这个配置就和之前一样的)
 data_config:
   collect: "id, created_at, updated_at, deleted_at"
-  base_name: 'BaseEntity'
+  base_name: "BaseEntity"

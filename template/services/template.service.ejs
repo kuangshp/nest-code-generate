@@ -15,15 +15,15 @@ export class <%= table.table_uppercase_name %>Service {
     return await this.<%= table.table_name %>Repository.save(data)
   }
 
-  async remove<%= table.table_uppercase_name %>ById(id: number): Promise<DeleteResult> {
-    return await this.<%= table.table_name %>Repository.delete(id)
+  async delete<%= table.table_uppercase_name %>ById(id: number): Promise<DeleteResult> {
+    return await this.<%= table.table_name %>Repository.softDelete(id)
   }
 
   async update<%= table.table_uppercase_name %>ById(id: number, data: <%= table.table_uppercase_name %>Entity): Promise<UpdateResult> {
     return await this.<%= table.table_name %>Repository.update(id, data)
   }
 
-  async find<%= table.table_uppercase_name %>s(): Promise<<%= table.table_uppercase_name %>Entity[]> {
+  async find<%= table.table_uppercase_name %>List(): Promise<<%= table.table_uppercase_name %>Entity[]> {
     return await this.<%= table.table_name %>Repository.find()
   }
 
