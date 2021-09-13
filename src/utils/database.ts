@@ -1,6 +1,6 @@
 import { readdirSync } from "fs";
 import { join } from 'path';
-import { DatabaseConfig, EnvDatabaseConfig, YMLDatabaseConfig } from '../types/types';
+import { DatabaseConfig, EnvDatabaseConfig, YMLDatabaseConfig } from '../typings/types';
 
 // 寻找node_modules所在的路径
 export const findNodeModules = () => {

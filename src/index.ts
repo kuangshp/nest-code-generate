@@ -1,8 +1,8 @@
 import "dotenv/config";
-import { ExternalOptions, Options, GENFILE_TYPES, PathOptions } from './types/types';
+import { ExternalOptions, Options, GENFILE_TYPES, PathOptions } from './typings/types';
 import { getTableStructure, transformStructure, generateEntity } from "./utils/parser";
 import { prompt } from 'inquirer';
-import { findPath, emptyTheMkdir, hasTableName } from "./utils";
+import { findPath, emptyTheMkdir, hasTableName, baseEntity } from "./utils";
 import { genFiles } from './utils/genFiles';
 import { join } from "path";
 
@@ -84,11 +84,13 @@ export class Parse {
       // 获取表结构(源)
       const structure = await getTableStructure(tableNames);
 
+      const { collect, base_name } = baseEntity();
+
       // 将源结构转换成期望机构
-      const columnStructure = transformStructure(structure);
+      const columnStructure = transformStructure(structure, collect);
 
       // 生成实体类
-      generateEntity(columnStructure, this.targetPath);
+      generateEntity(columnStructure, this.targetPath, base_name);
     });
   }
 

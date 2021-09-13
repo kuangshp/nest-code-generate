@@ -3,10 +3,10 @@ data_source:
   host: "localhost"
   port: 3306
   user: "root"
-  password: "123456"
-  database: "yst_shop"
+  password: "password"
+  database: "nest-code-generate"
 
 # 配置字段收取及基础类(可选，如果没有这个配置就和之前一样的)
 data_config:
-  collect: "id, created_at, updated_at, deleted_at",
+  collect: "id, created_at, updated_at, deleted_at"
   base_name: 'BaseEntity'

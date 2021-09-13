@@ -1,7 +1,7 @@
 import { render } from 'ejs'
 import { join, basename } from 'path'
 import { readdirSync, readFileSync, ensureDirSync, writeFileSync, statSync, existsSync } from 'fs-extra'
-import { GENFILE_TYPES, PathOptions } from '../types/types'
+import { GENFILE_TYPES, PathOptions } from '../typings/types'
 import { textCapitalize, underlineToHump } from '.'
 
 type TableOption = {

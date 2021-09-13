@@ -1,5 +1,5 @@
 import "dotenv/config";
-import { ExternalOptions, Options } from './types/types';
+import { ExternalOptions, Options } from './typings/types';
 export declare class Parse {
     tableName: string;
     moduleName: string;
