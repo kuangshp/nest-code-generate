@@ -1,8 +1,8 @@
 <% if (is_full) { %>
 import { Controller, Delete, Get, Post, Put, Body, Param, ParseIntPipe } from '@nestjs/common';
 import { DeleteResult, UpdateResult } from 'typeorm';
-import { <%= table.table_uppercase_name %>Entity } from './../entities/<%= table.table_name %>.entity';
-import { <%= table.table_uppercase_name %>Service } from './../services/<%= table.table_name %>.service';
+import { <%= table.table_uppercase_name %>Entity } from './../../entities/<%= table.table_name %>.entity';
+import { <%= table.table_uppercase_name %>Service } from './../../services/<%= table.table_name %>/<%= table.table_name %>.service';
 <% } else { %>
 import { Controller } from '@nestjs/common';
 <% } %>

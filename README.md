@@ -15,11 +15,12 @@
   根目录下创建数据库连接信息 `code-gen.yml` 文件
 
 ```yaml
-database:
+# 配置数据库连接信息
+data_source:
   host: "localhost"
   port: 3306
   user: "root"
-  password: "root"
+  password: "password"
   database: "nest-code-generate"
 # 配置字段收取及基础类(可选，如果没有配置的话，那么就是默认每个实体类都带了相同的字段)
 data_config:

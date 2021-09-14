@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { <%= table.table_uppercase_name %>Entity } from './../entities/<%= table.table_name %>.entity';
+import { <%= table.table_uppercase_name %>Entity } from './../../entities/<%= table.table_name %>.entity';
 <% if (is_full) { %>
 import { InjectRepository } from '@nestjs/typeorm';
 import { DeleteResult, Repository, UpdateResult } from 'typeorm';
