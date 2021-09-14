@@ -131,9 +131,9 @@ const generateOption = (row: Column & { jsType: string }) => {
     const numberTypes = ['length', 'scale', 'precision'];
     if (!ignoreKeys.includes(key) && v !== undefined) {
       const value = () => {
-        if (v === '') return '""';
+        if (v === '') return "''";
         if (typeof v === 'boolean' || numberTypes.includes(key) || key === 'enum') return v;
-        if (v != null) return `"${v}"`;
+        if (v != null) return `'${v}'`;
         return v;
       };
       str += `    ${key}: ${value()}, \n`;
