@@ -10,15 +10,9 @@
   npm install nest-code-generate -g
 ```
 
-- 2、局部安装方式
+- 2、关于配置数据库连接信息
 
-```properties
-  npm install nest-code-generate -D
-```
-
-- 3、关于配置数据库连接信息
-
-  根目录下创建数据库连接信息 `ormconfig.yml` 文件
+  根目录下创建数据库连接信息 `code-gen.yml` 文件
 
 ```yaml
 database:
@@ -27,6 +21,10 @@ database:
   user: "root"
   password: "root"
   database: "nest-code-generate"
+# 配置字段收取及基础类(可选，如果没有配置的话，那么就是默认每个实体类都带了相同的字段)
+data_config:
+  collect: "id, created_at, updated_at, deleted_at"
+  base_name: "BaseEntity"
 ```
 
 - 4、使用方式
@@ -38,7 +36,7 @@ database:
 
   # 1.其中code-gen是指令前缀
   # 2.表名为必传,可以传多个表名, 用","隔开即可, <表名1,表名2>
-  # 3.存放的目录为可选, 如果不传递该参数则默认存在到src目录下
+  # 3.存放的目录为可选, 如果不传递该参数则默认存在到src目录下,如果指定存放目录,那么你要先创建对应目录
 ```
 
 > 示例
@@ -96,12 +94,4 @@ database:
 code-gen type src/demo
 # 同样的如果是想存放到lib下面的demo文件夹可以执行下面的指令
 code-gen type lib/demo
-```
-
-**2.模块输入项**
-![module](https://shuiping-code.oss-cn-shenzhen.aliyuncs.com/static/module.png)
-
-```properties
-# 该输入项代表生成文件要挂载到的模块, 用于模版生成的依赖引入路径和名字等
-# 这是一个可选输入项
 ```
